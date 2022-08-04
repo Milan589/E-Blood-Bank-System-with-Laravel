@@ -24,24 +24,20 @@
                         @include('backend.common.flash_message')
                         <table class="table-bordered table">
                             <tr>
-                                <th>Name</th>
-                                <td>{{ $data['record']->name }}</td>
+                                <th>Donor Name</th>
+                                <td>{{ $data['record']->donorName->name }}</td>
                             </tr>
                             <tr>
-                                <th>Email</th>
-                                <td>{{ $data['record']->email }}</td>
+                                <th>Blood Bank Name</th>
+                                <td>{{ $data['record']->bankName->bank_name }}</td>
                             </tr>
                             <tr>
-                                <th>Email Verified at</th>
-                                <td>{{ $data['record']->email_verified_at }}</td>
+                                <th>Amount</th>
+                                <td>{{ $data['record']->amount}}</td>
                             </tr>
                             <tr>
-                                <th>Password</th>
-                                <td>{{ $data['record']->password }}</td>
-                            </tr>
-                            <tr>
-                                <th>Remember token</th>
-                                <td>{{ $data['record']->remember_token }}</td>
+                                <th>Donated Date</th>
+                                <td>{{ $data['record']->donated_date }}</td>
                             </tr>
                             <tr>
                                 <th>Created at</th>

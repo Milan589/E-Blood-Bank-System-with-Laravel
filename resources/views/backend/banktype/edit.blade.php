@@ -23,14 +23,9 @@
                         <div class="card-body">
                             {!! Form::model($data['record'], ['route' => [$base_route . 'update', $data['record']->id], 'method' => 'put', 'files' => true]) !!}
                             <div class="form-group">
-                                {!! Form::label('name', 'Name') !!}
-                                {!! Form::text('name', null, ['class' => 'form-control']) !!}
-                                @include('backend.common.validation_field', ['field' => 'name'])
-                            </div>
-                            <div class="form-group">
-                                {!! Form::label('status', 'Status') !!}
-                                {!! Form::radio('status', 1) !!} Active
-                                {!! Form::radio('status', 0, true) !!} Deactive
+                                {!! Form::label('bank_name', 'Blood Bank Name') !!}
+                                {!! Form::text('bank_name', null, ['class' => 'form-control']) !!}
+                                @include('backend.common.validation_field', ['field' => 'bank_name'])
                             </div>
                             <div class="form-group">
                                 {!! Form::submit('Save ' . $module, ['class' => 'btn btn-info']) !!}

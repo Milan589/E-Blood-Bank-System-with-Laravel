@@ -3,21 +3,20 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Models\Backend\Role;
+use App\Models\Backend\BankType;
+use App\Models\Backend\BloodBank;
+use App\Models\Backend\Location;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class RoleController extends BackendBaseController
+class BloodBankController extends BackendBaseController
 {
-    protected $module = 'Role';
-    protected  $base_view = 'backend.role.';
-    protected  $base_route = 'backend.role.';
-    // protected  $file_path = 'images' . DIRECTORY_SEPARATOR . 'backend' . DIRECTORY_SEPARATOR . 'role' . DIRECTORY_SEPARATOR;
-
-
+    protected $module = 'BloodBank';
+    protected  $base_view = 'backend.bloodbank.';
+    protected  $base_route = 'backend.bloodbank.';
     function __construct()
     {
-        $this->model = new Role();
+        $this->model = new BloodBank();
     }
     /**
      * Display a listing of the resource.
@@ -37,7 +36,9 @@ class RoleController extends BackendBaseController
      */
     public function create()
     {
-        return view($this->__loadDataToView($this->base_view . 'create'));
+        $data['banktypes'] = BankType::pluck('bank_name', 'id'); 
+        $data['locations'] = Location::pluck('address', 'id');
+        return view($this->__loadDataToView($this->base_view . 'create'), compact('data'));
     }
 
     /**
@@ -50,7 +51,9 @@ class RoleController extends BackendBaseController
     {
         $request->validate(
             [
-                'name' => 'required',
+                'bank_name' => 'required',
+                'bt_id' => 'required',
+                'l_id' => 'required',
             ]
         );
         try {
@@ -66,7 +69,6 @@ class RoleController extends BackendBaseController
         }
         return redirect()->route($this->base_route . 'index');
     }
-
     /**
      * Display the specified resource.
      *
@@ -77,7 +79,7 @@ class RoleController extends BackendBaseController
     {
         $data['record'] =  $this->model->find($id);
         if (!$data['record']) {
-            request()->session()->flash('error', ' Error: Invalid Request');
+            request()->session()->flash('error', 'Error: Invalid Request');
             return redirect()->route($this->base_route . 'index');
         }
         return view($this->__loadDataToView($this->base_view . 'show'), compact('data'));
@@ -91,12 +93,13 @@ class RoleController extends BackendBaseController
      */
     public function edit($id)
     {
-        $data['roles'] = $this->model->pluck('name', 'id');
+        $data['banktypes'] = BankType::pluck('bank_name', 'id'); 
+        $data['locations'] = Location::pluck('address', 'id');
         $data['record'] = $this->model->find($id);
         if ($data['record']) {
             return view($this->__loadDataToView($this->base_view . 'edit'), compact('data'));
         } else {
-            request()->session()->flash('error', 'Invalid Request');
+            request()->session()->flash('error', ' Invalid Request');
             return redirect()->route($this->base_route . 'index');
         }
     }
@@ -110,24 +113,19 @@ class RoleController extends BackendBaseController
      */
     public function update(Request $request, $id)
     {
+        $request->validate(
+            [
+                'bank_name' => 'required|unique',
+                'bt_id' => 'required',
+                'l_id' => 'required',
+            ]
+        );
         $data['record'] = $this->model->find($id);
-        $request->validate([
-            'name' => 'required',
-        ]);
-        if (!$data['record']) {
-            request()->session()->flash('error', 'Error: Invalid Request');
-            return redirect()->route($this->base_route . 'index');
-        }
-        try {
-            $request->request->add(['updated_by' => auth()->user()->id]);
-            $record = $data['record']->update($request->all());
-            if ($record) {
-                $request->session()->flash('success', $this->module . ' update success');
-            } else {
-                $request->session()->flash('error', $this->module . ' update failed');
-            }
-        } catch (\Exception $exception) {
-            $request->session()->flash('error', 'Error: ' . $exception->getMessage());
+        $request->request->add(['updated_by' => Auth::user()->id]);
+        if ($data['record']->update($request->all())) {
+            $request->session()->flash('success', $this->module . ' update success');
+        } else {
+            $request->session()->flash('error', $this->module . ' update failed');
         }
         return redirect()->route($this->base_route . 'index');
     }
@@ -138,11 +136,11 @@ class RoleController extends BackendBaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request  $request, $id)
+    public function destroy(Request $request, $id)
     {
         $data['record'] =  $this->model->find($id);
         if (!$data['record']) {
-            request()->session()->flash('error', ' Error: Invalid Request');
+            request()->session()->flash('error', 'Error: Invalid Request');
             return redirect()->route($this->base_route . 'index');
         }
         if ($data['record']->delete()) {
@@ -156,7 +154,7 @@ class RoleController extends BackendBaseController
     // to display deleted data
     public function trash()
     {
-        $data['records'] =  $this->model->onlyTrashed()->get();
+        $data['records'] = $this->model->onlyTrashed()->get();
         return view($this->__LoadDataToView($this->base_view . 'trash'), compact('data'));
     }
 
@@ -165,7 +163,7 @@ class RoleController extends BackendBaseController
     {
         $data['record'] =  $this->model->onlyTrashed()->where('id', $id)->first();
         if (!$data['record']) {
-            request()->session()->flash('error', ' Error: Invalid Request');
+            request()->session()->flash('error', 'Error: Invalid Request');
             return redirect()->route($this->base_route . 'index');
         }
         try {
@@ -178,7 +176,6 @@ class RoleController extends BackendBaseController
         } catch (\Exception $exception) {
             $request->session()->flash('error', 'Error: ' . $exception->getMessage());
         }
-
         return redirect()->route($this->base_route . 'index');
     }
 
@@ -187,7 +184,7 @@ class RoleController extends BackendBaseController
     {
         $data['record'] =  $this->model->onlyTrashed()->where('id', $id)->first();
         if (!$data['record']) {
-            request()->session()->flash('error', ' Error: Invalid Request');
+            request()->session()->flash('error', 'Error: Invalid Request');
             return redirect()->route($this->base_route . 'index');
         }
         if ($data['record']->forceDelete()) {

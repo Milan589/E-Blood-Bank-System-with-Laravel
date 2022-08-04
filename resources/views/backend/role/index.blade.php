@@ -9,7 +9,7 @@
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{{ url('/home') }}">Home</a></li>
                         <li class="breadcrumb-item active">{{ $module }}</li>
                     </ol>
                 </div>
@@ -31,7 +31,7 @@
                             <thead>
                                 <tr>
                                     <th>SN</th>
-                                    <th>Name</th>   
+                                    <th>Name</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
@@ -40,7 +40,7 @@
                                 <tbody>
                                     <tr>
                                         <td>{{ $loop->index + 1 }}</td>
-                                        <td>{{ $record->name }}</td> 
+                                        <td>{{ $record->name }}</td>
                                         <td>
                                             @if ($record->status == 1)
                                                 <span class="text-success">Active</span>
@@ -49,9 +49,6 @@
                                             @endif
                                         </td>
                                         <td>
-                                            {{-- <a href="{{ route($base_route . 'assign_form', $record->id) }}"
-                                                    class="btn btn-success">Assign Permission</a> --}}
-
                                             <a href="{{ route($base_route . 'show', $record->id) }}"
                                                 class="btn btn-info">View Details</a>
                                             <a

@@ -14,34 +14,18 @@
         </div><!-- /.container-fluid -->
     </section>
 
-    <!-- Main content -->
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
+                <a href="{{ route('backend.bloodgroup.index') }}" class="btn btn-info">List {{ $module }}</a>
                 <div class="card card-primary card-outline">
                     <div class="card-body">
                         <h5 class="card-title"></h5>
                         @include('backend.common.flash_message')
                         <table class="table-bordered table">
                             <tr>
-                                <th>Name</th>
-                                <td>{{ $data['record']->name }}</td>
-                            </tr>
-                            <tr>
-                                <th>Email</th>
-                                <td>{{ $data['record']->email }}</td>
-                            </tr>
-                            <tr>
-                                <th>Email Verified at</th>
-                                <td>{{ $data['record']->email_verified_at }}</td>
-                            </tr>
-                            <tr>
-                                <th>Password</th>
-                                <td>{{ $data['record']->password }}</td>
-                            </tr>
-                            <tr>
-                                <th>Remember token</th>
-                                <td>{{ $data['record']->remember_token }}</td>
+                                <th>Blood Group Name</th>
+                                <td>{{ $data['record']->bg_name }}</td>
                             </tr>
                             <tr>
                                 <th>Created at</th>
@@ -70,4 +54,5 @@
             </div>
         </div><!-- /.row -->
     </div><!-- /.container-fluid -->
+
 @endsection

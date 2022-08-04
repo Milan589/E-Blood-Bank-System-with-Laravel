@@ -16,13 +16,11 @@
             </div>
         </div><!-- /.container-fluid -->
     </section>
-
-    <!-- Main content -->
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
-                <a href="{{ route('backend.user.create') }}" class="btn btn-info">Create {{ $module }}</a>
-                <a href="{{ route('backend.user.trash') }}" class="btn btn-danger">Trash {{ $module }}</a>
+                <a href="{{ route('backend.role.create') }}" class="btn btn-info">Create {{ $module }}</a>
+                <a href="{{ route('backend.role.index') }}" class="btn btn-danger">List {{ $module }}</a>
                 <div class="card card-primary card-outline">
                     <div class="card-body">
                         <h5 class="card-title">List {{ $module }}</h5>
@@ -32,9 +30,7 @@
                             <thead>
                                 <tr>
                                     <th>SN</th>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    {{-- <th>Role</th> --}}
+                                    <th>Blood Bank Name</th>    
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -42,19 +38,18 @@
                                 <tbody>
                                     <tr>
                                         <td>{{ $loop->index + 1 }}</td>
-                                        <td>{{ $record->name }}</td>
-                                        <td>{{ $record->email }}</td>
-                                        {{-- <td>{{ $record->role->name }}</td> --}}
+                                        <td>{{ $record->bank_name }}</td>
                                         <td>
-                                            <a href="{{ route($base_route . 'show', $record->id) }}"
-                                                class="btn btn-info">View Details</a>
-                                            <a
-                                                href="{{ route($base_route . 'edit', $record->id) }}"class="btn btn-warning">Edit</a>
-                                            <form action="{{ route($base_route . 'destroy', $record->id) }}" method="post"
+                                            <form action="{{ route($base_route . 'restore', $record->id) }}" method="post"
                                                 style="display: inline-block">
-                                                <input type="hidden" name="_method" value="DELETE">
                                                 @csrf
-                                                <button type="submit" class="btn btn-danger">Delete</button>
+                                                <input type="submit" value="Restore" class='btn btn-success'>
+                                            </form>
+                                            <form action="{{ route($base_route . 'force_delete', $record->id) }}"
+                                                method="post" style="display: inline-block">
+                                                @csrf
+                                                @method('delete')
+                                                <input type="submit" value="Delete" class='btn btn-danger'>
                                             </form>
                                         </td>
                                     </tr>
@@ -66,6 +61,7 @@
             </div>
         </div><!-- /.row -->
     </div><!-- /.container-fluid -->
+
 @endsection
 @section('js')
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
@@ -78,6 +74,7 @@
                 "ordering": true,
                 "info": true
             });
+
         });
     </script>
 @endsection

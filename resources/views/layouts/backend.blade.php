@@ -53,13 +53,59 @@
                             <li class="nav-item">
                                 <ul class="nav nav-treeview">
                                     <li class="nav-item">
-                                        <a href="{{ url('../backend/blood-bank/create') }}" class="nav-link">
+                                        <a href="{{ url('../backend/bloodbank/create') }}" class="nav-link">
                                             <i class="far fa-square nav-icon"></i>
                                             <p>Create</p>
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="{{ url('../backend/blood-bank') }}" class="nav-link">
+                                        <a href="{{ url('../backend/bloodbank') }}" class="nav-link">
+                                            <i class="far fa-square nav-icon"></i>
+                                            <p>List</p>
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </li>
+                        </div>
+                    </div>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
+                                class="bi bi-bag-heart-fill me-2"></i>Location</a>
+                        <div class="dropdown-menu bg-transparent border-0">
+                            <li class="nav-item">
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="{{ url('../backend/location/create') }}" class="nav-link">
+                                            <i class="far fa-square nav-icon"></i>
+                                            <p>Create</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ url('../backend/location') }}" class="nav-link">
+                                            <i class="far fa-square nav-icon"></i>
+                                            <p>List</p>
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </li>
+                        </div>
+                    </div>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
+                                class="bi bi-bag-heart-fill me-2"></i>Blood Bank Types</a>
+                        <div class="dropdown-menu bg-transparent border-0">
+                            <li class="nav-item">
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="{{ url('../backend/banktype/create') }}" class="nav-link">
+                                            <i class="far fa-square nav-icon"></i>
+                                            <p>Create</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ url('../backend/banktype') }}" class="nav-link">
                                             <i class="far fa-square nav-icon"></i>
                                             <p>List</p>
                                         </a>
@@ -100,13 +146,13 @@
                             <li class="nav-item">
                                 <ul class="nav nav-treeview">
                                     <li class="nav-item">
-                                        <a href="{{ url('../backend/donation/create') }}" class="nav-link">
+                                        <a href="{{ url('../backend/blooddonation/create') }}" class="nav-link">
                                             <i class="far fa-square nav-icon"></i>
                                             <p>Create</p>
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="{{ url('../backend/donation') }}" class="nav-link">
+                                        <a href="{{ url('../backend/blooddonation') }}" class="nav-link">
                                             <i class="far fa-square nav-icon"></i>
                                             <p>List</p>
                                         </a>

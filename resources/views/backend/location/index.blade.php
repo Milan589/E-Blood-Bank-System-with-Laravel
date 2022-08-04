@@ -17,12 +17,11 @@
         </div><!-- /.container-fluid -->
     </section>
 
-    <!-- Main content -->
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
-                <a href="{{ route('backend.user.create') }}" class="btn btn-info">Create {{ $module }}</a>
-                <a href="{{ route('backend.user.trash') }}" class="btn btn-danger">Trash {{ $module }}</a>
+                <a href="{{ route('backend.location.create') }}" class="btn btn-info">Create {{ $module }}</a>
+                <a href="{{ route('backend.location.trash') }}" class="btn btn-danger">Trash {{ $module }}</a>
                 <div class="card card-primary card-outline">
                     <div class="card-body">
                         <h5 class="card-title">List {{ $module }}</h5>
@@ -32,9 +31,7 @@
                             <thead>
                                 <tr>
                                     <th>SN</th>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    {{-- <th>Role</th> --}}
+                                    <th>Address</th>   
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -42,9 +39,7 @@
                                 <tbody>
                                     <tr>
                                         <td>{{ $loop->index + 1 }}</td>
-                                        <td>{{ $record->name }}</td>
-                                        <td>{{ $record->email }}</td>
-                                        {{-- <td>{{ $record->role->name }}</td> --}}
+                                        <td>{{ $record->address }}</td>    
                                         <td>
                                             <a href="{{ route($base_route . 'show', $record->id) }}"
                                                 class="btn btn-info">View Details</a>

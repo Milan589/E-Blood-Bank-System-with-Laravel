@@ -2,22 +2,21 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Http\Controllers\BackendController;
 use App\Http\Controllers\Controller;
-use App\Models\Backend\Role;
+use App\Models\Backend\Location;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class RoleController extends BackendBaseController
+class LocationController extends BackendBaseController
 {
-    protected $module = 'Role';
-    protected  $base_view = 'backend.role.';
-    protected  $base_route = 'backend.role.';
-    // protected  $file_path = 'images' . DIRECTORY_SEPARATOR . 'backend' . DIRECTORY_SEPARATOR . 'role' . DIRECTORY_SEPARATOR;
-
-
+    protected $module = 'Location';
+    protected  $base_view = 'backend.location.';
+    protected  $base_route = 'backend.location.';
+    
     function __construct()
     {
-        $this->model = new Role();
+        $this->model = new Location();
     }
     /**
      * Display a listing of the resource.
@@ -50,7 +49,7 @@ class RoleController extends BackendBaseController
     {
         $request->validate(
             [
-                'name' => 'required',
+                'address' => 'required',
             ]
         );
         try {
@@ -91,7 +90,6 @@ class RoleController extends BackendBaseController
      */
     public function edit($id)
     {
-        $data['roles'] = $this->model->pluck('name', 'id');
         $data['record'] = $this->model->find($id);
         if ($data['record']) {
             return view($this->__loadDataToView($this->base_view . 'edit'), compact('data'));
@@ -112,7 +110,7 @@ class RoleController extends BackendBaseController
     {
         $data['record'] = $this->model->find($id);
         $request->validate([
-            'name' => 'required',
+            'address' => 'required',
         ]);
         if (!$data['record']) {
             request()->session()->flash('error', 'Error: Invalid Request');

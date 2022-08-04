@@ -16,7 +16,6 @@ return new class extends Migration
         Schema::create('blood_bank_types', function (Blueprint $table) {
             $table->id();
             $table->string('bank_name');
-            $table->string('slug')->unique();
             $table->timestamps();
             $table->softDeletes();
             $table->unsignedBigInteger('created_by');

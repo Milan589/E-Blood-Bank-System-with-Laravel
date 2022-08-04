@@ -28,7 +28,7 @@
                             'method' => 'put',
                             'files' => true,
                         ]) !!}
-                        @include('backend.user.includes.form', ['button' => 'Update'])
+                        @include('backend.bloodbank.includes.form', ['button' => 'Update'])
                         {!! Form::close() !!}
                     </div>
                 </div><!-- /.card -->

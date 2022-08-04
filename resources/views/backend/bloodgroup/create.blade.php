@@ -13,22 +13,25 @@
             </div>
         </div><!-- /.container-fluid -->
     </section>
-
-    <!-- Main content -->
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
+                <a href="{{ route($base_route . 'index') }}" class="btn btn-info">List {{ $module }}</a>
                 <div class="card card-primary card-outline">
                     <div class="card-header">
-                        <h3 class="card-title">Edit {{ $module }}</h3>
+                        <h3 class="card-title">Create {{ $module }}</h3>
                     </div>
                     <div class="card-body">
-                        {!! Form::model($data['record'], [
-                            'route' => [$base_route . 'update', $data['record']->id],
-                            'method' => 'put',
-                            'files' => true,
-                        ]) !!}
-                        @include('backend.user.includes.form', ['button' => 'Update'])
+                        {!! Form::open(['route' => $base_route . 'store', 'method' => 'post']) !!}
+                        <div class="form-group">
+                            {!! Form::label('bg_name', 'Blood Group Name') !!}
+                            {!! Form::text('bg_name', null, ['class' => 'form-control']) !!}
+                            @include('backend.common.validation_field', ['field' => 'bg_name'])
+                        </div>
+                        <div class="form-group">
+                            {!! Form::submit('Save ' . $module, ['class' => 'btn btn-info']) !!}
+                            {!! Form::reset('Clear', ['class' => 'btn btn-danger']) !!}
+                        </div>
                         {!! Form::close() !!}
                     </div>
                 </div><!-- /.card -->

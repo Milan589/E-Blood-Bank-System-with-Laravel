@@ -28,7 +28,7 @@
                             'method' => 'put',
                             'files' => true,
                         ]) !!}
-                        @include('backend.user.includes.form', ['button' => 'Update'])
+                        @include('backend.blooddonation.includes.form', ['button' => 'Update'])
                         {!! Form::close() !!}
                     </div>
                 </div><!-- /.card -->

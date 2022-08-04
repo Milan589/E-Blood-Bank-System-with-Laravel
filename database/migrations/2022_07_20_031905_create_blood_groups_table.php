@@ -16,7 +16,6 @@ return new class extends Migration
         Schema::create('blood_groups', function (Blueprint $table) {
             $table->id();
             $table->string('bg_name');
-            $table->string('slug')->unique();
             $table->softDeletes();
             $table->timestamps();
             $table->unsignedBigInteger('created_by');

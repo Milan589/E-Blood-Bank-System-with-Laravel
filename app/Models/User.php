@@ -54,6 +54,6 @@ class User extends Authenticatable
         return $this->belongsTo(User::class, 'updated_by', 'id');
     }
     function role(){
-        return $this->belongsTo(Role::class,'name','id');
+        return $this->belongsTo(Role::class,'role_id','id');
     }
 }
