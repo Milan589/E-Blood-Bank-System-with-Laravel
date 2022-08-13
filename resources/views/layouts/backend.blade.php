@@ -369,7 +369,8 @@
     <script src="{{ asset('assets/backend/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js') }}"></script>
 
     <!-- Template Javascript -->
-    <script src="{{ asset('assets/backend/js/main.js') }}"></script>
+    <script src="{{ asset('assets/backend/js/main.js') }}">
+    </script>
     @yield('js')
 </body>
 
