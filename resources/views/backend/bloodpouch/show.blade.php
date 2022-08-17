@@ -29,15 +29,17 @@
                             </tr>
                             <tr>
                                 <th>Blood Bank Name</th>
-                                <td>{{ $data['record']->bankName->bank_name }}</td>
+                                <td></td>
                             </tr>
                             <tr>
-                                <th>Amount</th>
-                                <td>{{ $data['record']->amount}}</td>
-                            </tr>
-                            <tr>
-                                <th>Donated Date</th>
-                                <td>{{ $data['record']->donated_date }}</td>
+                                <th>Available</th>
+                                <td>
+                                    @if ($data['record']->status == 1)
+                                        <span class="text-success">Yes</span>
+                                    @else
+                                        <span class="text-danger">No</span>
+                                    @endif
+                                </td>
                             </tr>
                             <tr>
                                 <th>Created at</th>

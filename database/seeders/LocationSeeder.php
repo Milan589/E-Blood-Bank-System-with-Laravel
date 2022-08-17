@@ -6,7 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class RoleSeeder extends Seeder
+class LocationSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,11 +15,10 @@ class RoleSeeder extends Seeder
      */
     public function run()
     {
-        $roles =['admin','donor'];
-        for($i =0 ; $i<count($roles);$i++){
-            DB::table('roles')->insert([
-                'name'=>$roles[$i],
-                'status' => 1,
+        $locations =['Gaushala','Tinkune','New Road'];
+        for($i =0 ; $i<count($locations);$i++){
+            DB::table('locations')->insert([
+                'address'=>$locations[$i],
                 'created_by'=>1
             ]);
         }

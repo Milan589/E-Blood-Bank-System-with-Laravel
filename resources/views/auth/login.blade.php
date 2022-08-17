@@ -46,7 +46,7 @@
 
         <!-- Sign In Start -->
 
-        <div class="container">
+        <div class="container1">
             <h1>Welcome To Login Page</h1>
 
             <form action="{{ route('login') }}" method='post' name="form" id="form">

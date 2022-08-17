@@ -281,3 +281,7 @@
     background: var(--dark);
     border-color: var(--primary);
 }
+
+.content-header {
+    padding-top: 20px;
+}

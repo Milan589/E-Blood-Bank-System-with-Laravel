@@ -29,11 +29,11 @@
                             </tr>
                             <tr>
                                 <th>Blood Bank Type</th>
-                                {{-- <td>{{ $data['record']->email }}</td> --}}
+                                <td>{{ $data['record']->bankType->bank_name }}</td>
                             </tr>
                             <tr>
                                 <th>Location</th>
-                                {{-- <td>{{ $data['record']->email_verified_at }}</td> --}}
+                                <td>{{ $data['record']->bankLocation->address }}</td>
                             </tr>
                             <tr>
                                 <th>Created at</th>

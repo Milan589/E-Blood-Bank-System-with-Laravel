@@ -25,5 +25,11 @@ class DatabaseSeeder extends Seeder
         $this->call([
             BloodGroupSeeder::class
         ]);
+        $this->call([
+            BloodBankTypeSeeder::class
+        ]);
+        $this->call([
+            LocationSeeder::class
+        ]);
     } 
 }

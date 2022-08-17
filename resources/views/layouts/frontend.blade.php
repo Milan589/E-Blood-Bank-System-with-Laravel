@@ -31,12 +31,12 @@
                 <div class="openMenu"> <i class="fas fa-bars"></i></div>
                 <div class="nav-list">
                     <ul class="mainMenu">
-                        <li> <a href="index.html" class="nav-link">Home</a></li>
+                        <li> <a href="{{route('frontend.home')}}" class="nav-link">Home</a></li>
                         <li> <a href="result.html" class="nav-link">Blood</a></li>
                         <li> <a href="about.html" class="nav-link">About</a></li>
                         <li> <a href="contact.html" class="nav-link">Contact</a></li>
-                        <li> <a href="about.html" class="nav-link">Login</a></li>
-                        <li> <a href="contact.html" class="nav-link">Register</a></li>
+                        <li> <a href="{{route('frontend.donor.login')}}" class="nav-link">Login</a></li>
+                        <li> <a href="{{route('frontend.donor.register')}}" class="nav-link">Register</a></li>
                         <div class="closeMenu"><i class="fas fa-times"></i></div>
                     </ul>
                 </div>

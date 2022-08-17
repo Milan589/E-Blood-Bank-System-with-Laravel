@@ -18,10 +18,11 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+        'role_id',
         'name',
+        'phone',
         'email',
         'password',
-        'role_id',
         'created_by',
         'updated_by',
     ];
@@ -55,5 +56,8 @@ class User extends Authenticatable
     }
     function role(){
         return $this->belongsTo(Role::class,'role_id','id');
+    }
+    function donor(){
+        return $this->hasOne(Donor::class,'user_id','id');
     }
 }

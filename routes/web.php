@@ -20,9 +20,12 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::get('/', [App\Http\Controllers\Frontend\HomeController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\Frontend\HomeController::class, 'index'])->name('frontend.home');
 Route::get('/home', [App\Http\Controllers\BackendController::class, 'index'])->name('home');
-
+Route::get('/donor/register', [\App\Http\Controllers\Frontend\DonorController::class, 'registerForm'])->name('frontend.donor.register');
+Route::get('/donor/login', [\App\Http\Controllers\Frontend\DonorController::class, 'login'])->name('frontend.donor.login');
+Route::post('/donor/doregister', [App\Http\Controllers\Frontend\DonorController::class, 'register'])->name('frontend.donor.doregister');
+Route::get('/donor/home', [\App\Http\Controllers\Frontend\DonorController::class, 'home'])->name('frontend.donor.home');
 ################ BloodBankController ############
 
 Route::prefix('backend/bloodbank')->name('backend.bloodbank.')->group(function () {
