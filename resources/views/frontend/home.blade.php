@@ -28,7 +28,7 @@
                             &nbsp;&nbsp;Time&nbsp;&nbsp;</a>&nbsp;&nbsp;&nbsp;
                     </div>
                     <div class="signup">
-                        <a href="#" class="btn-event-click-button">
+                        <a href="{{route('frontend.donor.register')}}" class="btn-event-click-button">
                             Register Now</a>
 
                     </div>
@@ -65,7 +65,7 @@
                             &nbsp;&nbsp;Time&nbsp;&nbsp;</a>
                     </div>
                     <div class="signup">
-                        <a href="#" class="btn-signup">
+                        <a href="{{route('frontend.donor.register')}}" class="btn-signup">
                             Register Now</a>
                     </div>
                 </div>

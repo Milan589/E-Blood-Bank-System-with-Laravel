@@ -43,7 +43,7 @@
                                 <tbody>
                                     <tr>
                                         <td>{{ $loop->index + 1 }}</td>
-                                        <td>{{ $record->donorName->name }}</td>
+                                        <td>{{ $record->donorName->name }} </td>
                                         <td>{{ $record->bankName->bank_name }}</td>
                                         <td>{{ $record->amount }}</td>
                                         <td>{{$record->donated_date}}</td>

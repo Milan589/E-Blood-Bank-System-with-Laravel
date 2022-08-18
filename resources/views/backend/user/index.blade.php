@@ -42,7 +42,7 @@
                                 <tbody>
                                     <tr>
                                         <td>{{ $loop->index + 1 }}</td>
-                                        <td>{{ $record->name }}</td>
+                                        <td>{{ $record->name }} </td>
                                         <td>{{ $record->email }}</td>
                                         {{-- <td>{{ $record->role->name }}</td> --}}
                                         <td>

@@ -26,6 +26,7 @@ Route::get('/donor/register', [\App\Http\Controllers\Frontend\DonorController::c
 Route::get('/donor/login', [\App\Http\Controllers\Frontend\DonorController::class, 'login'])->name('frontend.donor.login');
 Route::post('/donor/doregister', [App\Http\Controllers\Frontend\DonorController::class, 'register'])->name('frontend.donor.doregister');
 Route::get('/donor/home', [\App\Http\Controllers\Frontend\DonorController::class, 'home'])->name('frontend.donor.home');
+Route::get('/donor/wantdonate', [\App\Http\Controllers\Frontend\DonorController::class, 'donate'])->name('frontend.donor.wantdonate');
 ################ BloodBankController ############
 
 Route::prefix('backend/bloodbank')->name('backend.bloodbank.')->group(function () {

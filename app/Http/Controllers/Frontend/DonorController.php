@@ -62,5 +62,8 @@ class DonorController extends Controller
     {
         return view('frontend.donor.home');
     }
-    
+    function donate()
+    {
+        return view('frontend.donor.wantdonate');
+    }
 }
