@@ -69,6 +69,7 @@
         </div>
         <div class="form-handler">
             <button type="submit" class="btn-register">Register</button>
+            <button type="reset" class="btn-register">Reset</button>
         </div>
     </form>
 </div>
