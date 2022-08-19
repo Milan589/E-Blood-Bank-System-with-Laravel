@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Backend\BloodBank;
+use App\Models\Backend\BloodGroup;
 use App\Models\Donor;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -64,6 +66,8 @@ class DonorController extends Controller
     }
     function donate()
     {
-        return view('frontend.donor.wantdonate');
+        $data['bloodGroups']= BloodGroup::pluck('bg_name','id');
+        $data['banknames'] = BloodBank::pluck('bank_name','id');
+        return view('frontend.donor.wantdonate',compact('data'));
     }
 }

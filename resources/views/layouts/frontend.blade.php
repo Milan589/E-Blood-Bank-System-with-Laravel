@@ -33,10 +33,24 @@
                     <ul class="mainMenu">
                         <li> <a href="{{route('frontend.home')}}" class="nav-link">Home</a></li>
                         <li> <a href="result.html" class="nav-link">Blood</a></li>
-                        <li> <a href="about.html" class="nav-link">Want To Donate</a></li>
                         <li> <a href="contact.html" class="nav-link">About</a></li>
+                        @if (auth()->user() != null && auth()->user()->role->name =='donor')
+                        <li> <a href="{{route('frontend.donor.wantdonate')}}" class="nav-link">Want To Donate</a></li>
+                        <li> <a href="#" class="nav-link">{{auth()->user()->name}}</a></li>
+                        <li> <a class="nav-link" href="{{ route('logout') }}"
+                            onclick="event.preventDefault();
+                                  document.getElementById('logout-form').submit();">
+                            {{ __('Logout') }}
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                class="d-none">
+                                @csrf
+                            </form>
+                        </a>
+                    </li>
+                        @else
                         <li> <a href="{{route('frontend.donor.login')}}" class="nav-link">Login</a></li>
                         <li> <a href="{{route('frontend.donor.register')}}" class="nav-link">Register</a></li>
+                        @endif
                         <div class="closeMenu"><i class="fas fa-times"></i></div>
                     </ul>
                 </div>

@@ -95,7 +95,7 @@
                     </a>
                 </div>
                 <div class="blood3">
-                    <a href="#" class="btn-signup">
+                    <a href="{{route('frontend.donor.login')}}" class="btn-signup">
                         <h4 class="topic">Donor login</h4>
                     </a>
                 </div>

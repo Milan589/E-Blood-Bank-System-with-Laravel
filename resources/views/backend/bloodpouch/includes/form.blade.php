@@ -4,7 +4,7 @@
     {!! Form::radio('status', 0, true) !!} No
 </div>
 <div class="form-group">
-    {!! Form::label('bd_id', 'Donated Date'); !!}
+    {!! Form::label('bd_id', 'Blood Donor'); !!}
     {!! Form::select('bd_id',$data['bloodDonations'], null,['class' => 'form-control','placeholder'=>'Select Donation ID']); !!}
     @include('backend.common.validation_field',['field' => 'bd_id'])
 </div>
