@@ -24,8 +24,8 @@ class BloodPouch extends Model
     function updatedBy(){
         return $this->belongsTo(User::class, 'updated_by','id');
     }
-    function donorName(){
-        return $this->belongsTo(BloodDonation::class,'bd_id','id');
+    function bankType(){
+        return $this->belongsTo(BankType::class,'bt_id','id');
     }
     function bloodGroup(){
         return $this->belongsTo(BloodGroup::class, 'bg_id','id');

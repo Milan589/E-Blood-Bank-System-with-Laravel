@@ -20,8 +20,9 @@
     <div id="navbar">
         <div class="container">
             <nav>
-                <div class="heading">
-                    <span>E-BLOOD BANK</span>
+                <div class="heading-part">
+                    <a href="{{route('frontend.home')}}" class="heading"> <span>E-BLOOD BANK</span></a>
+                   
                 </div>
                 <div class="search">
                     <form class="d-none d-md-flex ms-4">
@@ -32,8 +33,8 @@
                 <div class="nav-list">
                     <ul class="mainMenu">
                         <li> <a href="{{route('frontend.home')}}" class="nav-link">Home</a></li>
-                        <li> <a href="result.html" class="nav-link">Blood</a></li>
-                        <li> <a href="contact.html" class="nav-link">About</a></li>
+                        <li> <a href="{{route('frontend.donor.bloodbank')}}" class="nav-link">Blood Bank</a></li>
+                        {{-- <li> <a href="contact.html" class="nav-link">About</a></li> --}}
                         @if (auth()->user() != null && auth()->user()->role->name =='donor')
                         <li> <a href="{{route('frontend.donor.wantdonate')}}" class="nav-link">Want To Donate</a></li>
                         <li> <a href="#" class="nav-link">{{auth()->user()->name}}</a></li>

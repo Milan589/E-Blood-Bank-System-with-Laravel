@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
+use App\Models\Backend\BloodGroup;
 use App\Models\Backend\Role;
+use Faker\Core\Blood;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -25,6 +27,7 @@ class User extends Authenticatable
         'password',
         'created_by',
         'updated_by',
+        'bg_id',
     ];
 
     /**
@@ -53,6 +56,10 @@ class User extends Authenticatable
     function updatedBy()
     {
         return $this->belongsTo(User::class, 'updated_by', 'id');
+    }
+    function bloodGroup()
+    {
+        return $this->belongsTo(BloodGroup::class, 'bg_id', 'id');
     }
     function role(){
         return $this->belongsTo(Role::class,'role_id','id');

@@ -52,7 +52,7 @@
             @enderror
         </div>
         <div class="form-handler">
-            <input type="email" name="email" id="email" value="{{ old('email') }}" placeholder="Enter Username">
+            <input type="email" name="email" id="email" value="{{ old('email') }}" placeholder="Enter Email">
             @error('email')
                 <span class="text-danger">
                     <strong>{{ $message }}</strong>
@@ -66,6 +66,13 @@
                     <strong>{{ $message }}</strong>
                 </span>
             @enderror
+        </div>
+        <div class="form-handler">
+            {!! Form::select('bg_id', $data['bloodGroups'], null, [
+                'class' => 'form-control',
+                'placeholder' => 'Select Blood Groups',
+            ]) !!}
+            @include('backend.common.validation_field', ['field' => 'bg_name'])
         </div>
         <div class="form-handler">
             <button type="submit" class="btn-register">Register</button>
