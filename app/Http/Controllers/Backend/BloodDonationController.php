@@ -120,8 +120,6 @@ class BloodDonationController extends BackendBaseController
         $request->validate([
             'donated_date' => 'required',
             'amount' => 'required|numeric',
-            'b_id' => 'required',
-            'user_id' => 'required',
         ]);
         if (!$data['record']) {
             request()->session()->flash('error', 'Error: Invalid Request');

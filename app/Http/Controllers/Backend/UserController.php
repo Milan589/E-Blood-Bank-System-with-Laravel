@@ -53,7 +53,7 @@ class UserController extends BackendBaseController
                 'role_id' => 'required',
                 'name' => 'required',
                 'phone' => 'required|numeric|min:10',
-                'email' => 'required|email',
+                'email' => 'required|email|max:255|unique:users,email,'.Auth::user()->id.',id',
                 'password' => 'required',
             ]
         );

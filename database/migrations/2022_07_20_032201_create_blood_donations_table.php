@@ -19,6 +19,7 @@ return new class extends Migration
             $table->double('amount');
             $table->unsignedBigInteger('b_id')->nullable();
             $table->unsignedBigInteger('user_id')->nullable();
+            $table->boolean('status')->default(0);
             $table->timestamps();
             $table->softDeletes();
             $table->unsignedBigInteger('created_by');

@@ -36,6 +36,7 @@
                                     <th>Blood Bank Name</th>
                                     <th>Amount</th>
                                     <th>Donated Date</th>
+                                    <th>Status</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -43,10 +44,17 @@
                                 <tbody>
                                     <tr>
                                         <td>{{ $loop->index + 1 }}</td>
-                                        <td>{{ $record->donorName->name }} </td>
+                                        <td>{{ $record->donorName->name }}</td>
                                         <td>{{ $record->bankName->bank_name }}</td>
                                         <td>{{ $record->amount }}</td>
-                                        <td>{{$record->donated_date}}</td>
+                                        <td>{{ $record->donated_date }}</td>
+                                        <td>
+                                            @if ($record->status == 1)
+                                                <span class="text-success">Yes</span>
+                                            @else
+                                                <span class="text-danger">No</span>
+                                            @endif
+                                        </td>
                                         <td>
                                             <a href="{{ route($base_route . 'show', $record->id) }}"
                                                 class="btn btn-info">View Details</a>

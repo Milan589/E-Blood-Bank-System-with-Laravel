@@ -33,11 +33,21 @@
                             </tr>
                             <tr>
                                 <th>Amount</th>
-                                <td>{{ $data['record']->amount}}</td>
+                                <td>{{ $data['record']->amount }}</td>
                             </tr>
                             <tr>
                                 <th>Donated Date</th>
                                 <td>{{ $data['record']->donated_date }}</td>
+                            </tr>
+                            <tr>
+                                <th>Status</th>
+                                <td>
+                                    @if ($data['record']->status == 1)
+                                        <span class="text-success">Yes</span>
+                                    @else
+                                        <span class="text-danger">No</span>
+                                    @endif
+                                </td>
                             </tr>
                             <tr>
                                 <th>Created at</th>
@@ -47,12 +57,12 @@
                                 <th>Updated at</th>
                                 <td>{{ $data['record']->updated_at }}</td>
                             </tr>
-                            <tr>
+                            {{-- <tr>
                                 <th>Created_By</th>
                                 <td>
                                     {{ $data['record']->createdBy->name }}
                                 </td>
-                            <tr>
+                            <tr> --}}
                                 <th>Updated_By</th>
                                 <td>
                                     @if (!empty($data['record']->updated_by))

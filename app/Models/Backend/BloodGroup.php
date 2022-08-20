@@ -21,4 +21,7 @@ class BloodGroup extends Model
     function updatedBy(){
         return $this->belongsTo(User::class, 'updated_by','id');
     }
+    function bloodPouch(){
+        return $this->hasMany(BloodPouch::class,'bg_id','id');
+    }
 }

@@ -34,3 +34,26 @@
         </div><!-- /.row -->
     </div><!-- /.container-fluid -->
 @endsection
+@section('js')
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script type="text/javascript">
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    $('#category_id').change(function() {
+        var catid = $(this).val();
+        $.ajax({
+            method: "POST",
+            url: "{{ route('frontend.donor.getsubcategory') }}",
+            data: {
+                'id': catid
+            },
+            success: function(resp) {
+                $('#subcategory_id').html(resp);
+            }
+        });
+    });
+</script>
+@endsection

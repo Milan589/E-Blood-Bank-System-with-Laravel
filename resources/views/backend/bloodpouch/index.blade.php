@@ -42,7 +42,7 @@
                                 <tbody>
                                     <tr>
                                         <td>{{ $loop->index + 1 }}</td>
-                                        <td>{{ $record->donorName->name }}</td>
+                                        {{-- <td>{{ $record->donorName->name }}</td> --}}
                                         <td> </td>
                                         <td>
                                             @if ($record->status == 1)

@@ -30,6 +30,11 @@ Route::get('/donor/wantdonate', [\App\Http\Controllers\Frontend\DonorController:
 Route::post('/donor/donate', [App\Http\Controllers\Frontend\DonorController::class, 'dodonate'])->name('frontend.donor.donate');
 Route::get('/donor/bloodbank', [App\Http\Controllers\Frontend\DonorController::class, 'bloodbank'])->name('frontend.donor.bloodbank');
 Route::get('/donor/availability', [App\Http\Controllers\Frontend\DonorController::class, 'bloodAvailable'])->name('frontend.donor.availability');
+
+// //ajax
+// Route::post('/get_subcategory', [\App\Http\Controllers\Backend\BloodPouchController::class, 'getSubcategory'])->name('frontend.donor.getsubcategory');
+
+
 ################ BloodBankController ############
 
 Route::prefix('backend/bloodbank')->name('backend.bloodbank.')->group(function () {

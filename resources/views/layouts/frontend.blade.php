@@ -24,17 +24,17 @@
                     <a href="{{route('frontend.home')}}" class="heading"> <span>E-BLOOD BANK</span></a>
                    
                 </div>
-                <div class="search">
+                {{-- <div class="search">
                     <form class="d-none d-md-flex ms-4">
                         <input class="form-control border-0" type="search" placeholder="Search" width="100%">
                     </form>
-                </div>
+                </div> --}}
                 <div class="openMenu"> <i class="fas fa-bars"></i></div>
                 <div class="nav-list">
                     <ul class="mainMenu">
                         <li> <a href="{{route('frontend.home')}}" class="nav-link">Home</a></li>
                         <li> <a href="{{route('frontend.donor.bloodbank')}}" class="nav-link">Blood Bank</a></li>
-                        {{-- <li> <a href="contact.html" class="nav-link">About</a></li> --}}
+                        <li> <a href="{{route('frontend.donor.availability')}}" class="nav-link">Availability</a></li>
                         @if (auth()->user() != null && auth()->user()->role->name =='donor')
                         <li> <a href="{{route('frontend.donor.wantdonate')}}" class="nav-link">Want To Donate</a></li>
                         <li> <a href="#" class="nav-link">{{auth()->user()->name}}</a></li>

@@ -28,14 +28,11 @@
                     <th class="all">Blood Name</th>
                     <th class="desktop">Availability</th>
                     <th class="desktop">Last Updated</th>
-                    <th class="desktop">Type</th>
-
                 <tbody>
                     @foreach ($data['records'] as $record )
                         <tr>
                             <td>{{ $loop->index + 1 }}</td>
-                            {{-- <td>{{ $record->bank_name }}</td>
-                            {{-- <td>{{ $record->bankLocation->address }}</td> --}}
+                           <td>{{ $record->bloodGroup->bg_name}}</td>
                             <td>
                                 @if ($record->status == 1)
                                 <span class="text-success">Yes</span>
@@ -44,7 +41,6 @@
                             @endif
                             </td>
                             <td>{{ $record->updated_at }}</td>
-                            {{-- <td>{{ $record->bankType->bank_name }}</td> --}}
                         </tr>
                         <tr>
                             <td></td>

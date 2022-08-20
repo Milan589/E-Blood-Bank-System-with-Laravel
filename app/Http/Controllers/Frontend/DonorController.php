@@ -114,8 +114,8 @@ class DonorController extends Controller
         return view('frontend.donor.bloodbank',compact('data'));
     }
     function bloodAvailable(){
-        $data['records'] = BloodPouch::orderby('created_at','desc')->get();
-        // $data['records'] = BankType::orderby('created_at','desc')->get();
+        $data['records'] = BloodGroup::pluck('bg_name','id');
+        $data['records'] = BloodPouch::orderby('created_at','desc')->get();      
         return view('frontend.donor.availability',compact('data'));
     }
 }

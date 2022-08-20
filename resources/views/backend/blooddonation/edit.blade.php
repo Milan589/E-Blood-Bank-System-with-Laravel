@@ -28,7 +28,25 @@
                             'method' => 'put',
                             'files' => true,
                         ]) !!}
-                        @include('backend.blooddonation.includes.form', ['button' => 'Update'])
+                        <div class="form-group">
+                            {!! Form::label('donated_date', 'Donated Date'); !!}
+                            {!! Form::date('donated_date', null,['class' => 'form-control']); !!}
+                            @include('backend.common.validation_field',['field' => 'donated_date'])
+                        </div>
+                        <div class="form-group">
+                            {!! Form::label('amount', 'Amount in ml'); !!}
+                            {!! Form::text('amount', null,['class' => 'form-control']); !!}
+                            @include('backend.common.validation_field',['field' => 'amount'])
+                        </div>
+                      <div class="form-group">
+                        <label for="">Status:</label>
+                        <input type="radio" name="status" id="Yes" value="1">Yes
+                        <input type="radio" name="status" id="No" value="0" checked>No
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-info" value="Update {{ $module }}">
+                        <input type="reset" class="btn btn-danger" value="Reset">
+                    </div>
                         {!! Form::close() !!}
                     </div>
                 </div><!-- /.card -->

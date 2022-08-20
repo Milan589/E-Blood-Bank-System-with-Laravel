@@ -14,7 +14,7 @@ class BloodDonation extends Model
     use SoftDeletes;
     protected $table = 'blood_donations';
 
-    protected $fillable = ['donated_date','amount','b_id','user_id','created_by','updated_by'];
+    protected $fillable = ['donated_date','amount','b_id','user_id','status','created_by','updated_by'];
 
     function createdBy(){
         return $this->belongsTo(User::class, 'created_by','id');

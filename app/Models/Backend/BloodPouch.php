@@ -30,4 +30,7 @@ class BloodPouch extends Model
     function bloodGroup(){
         return $this->belongsTo(BloodGroup::class, 'bg_id','id');
     }
+    function donorName(){
+        return $this->belongsTo(User::class,'user_id','id');
+    }
 }
