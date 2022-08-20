@@ -70,7 +70,9 @@ class DonorController extends Controller
     }
     function home()
     {
-        return view('frontend.donor.home');
+
+        $data['record'] = BloodDonation::pluck('user_id','id' )->count();
+        return view('frontend.donor.home',compact('data'));
     }
     function donate()
     {

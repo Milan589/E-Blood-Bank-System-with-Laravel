@@ -20,7 +20,7 @@
                         class="donate-blood">Donate
                         Now >></a>&nbsp;&nbsp;&nbsp;
                     <div style="margin-top:3%;display:inline-flex">
-                        <a href="#" class="btn-event-click-button"><i class="fas fa-tint"></i>
+                        <a href="{{route('frontend.donor.bloodbank')}}" class="btn-event-click-button"><i class="fas fa-tint"></i>
                             Blood</a>&nbsp;&nbsp;&nbsp;
                         <a href="#" class="btn-event-click-button"
                             style="background-color:#cf3d3c;color:#fff;padding:12px;border-radius:25px;font-weight:600;"><i
@@ -57,7 +57,7 @@
                         class="donate-blood">Donate
                         Now >></a>&nbsp;&nbsp;&nbsp;
                     <div style="margin-top:3%;display:inline-flex">
-                        <a href="#" class="btn-event-click-button"><i class="fas fa-tint"></i>
+                        <a href="{{route('frontend.donor.bloodbank')}}" class="btn-event-click-button"><i class="fas fa-tint"></i>
                             Blood</a>&nbsp;&nbsp;&nbsp;
                         <a href="#" class="btn-event-click-button"
                             style="background-color:#cf3d3c;color:#fff;padding:12px;border-radius:25px;font-weight:600;"><i

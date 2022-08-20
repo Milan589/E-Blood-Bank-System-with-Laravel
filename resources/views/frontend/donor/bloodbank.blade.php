@@ -1,6 +1,5 @@
 @extends('layouts.frontend')
 @section('title', 'Blood Bank')
-{{-- <link href="{{ asset('assets/backend/css/login.css') }}" rel="stylesheet"> --}}
 @section('main-content')
     <div class="container pt-4">
         <section class="content-header">
@@ -22,8 +21,8 @@
     <div class="container">
         <div class="row">
             <table id="example-table" class="table table-bordered table-hover table-striped dt-responsive "
-                style='width:100% ; '>
-                <thead class="  ">
+                style='width:100% ;  color:#dc3545 ;'>
+                <thead class="" style="background-color: #faebd7; color:#dc3545;">
                     <th class="all">S.No.</th>
                     <th class="all">Name</th>
                     <th class="desktop">Address</th>

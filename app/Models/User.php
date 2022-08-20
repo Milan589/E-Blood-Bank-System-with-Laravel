@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Backend\BloodDonation;
 use App\Models\Backend\BloodGroup;
 use App\Models\Backend\Role;
 use Faker\Core\Blood;
@@ -65,6 +66,6 @@ class User extends Authenticatable
         return $this->belongsTo(Role::class,'role_id','id');
     }
     function donor(){
-        return $this->hasOne(Donor::class,'user_id','id');
+        return $this->hasMany(BloodDonation::class,'bd_id','id');
     }
 }

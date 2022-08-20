@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="{{ asset('assets/frontend/css/mobile.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/frontend/fontawesome-free-5.15.4-web/css/all.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/frontend/bootstrap-5.1.3-dist/css/bootstrap.min.css') }}">
-
+    @yield('css')
 
 </head>
 
@@ -37,7 +37,7 @@
                         <li> <a href="{{route('frontend.donor.availability')}}" class="nav-link">Availability</a></li>
                         @if (auth()->user() != null && auth()->user()->role->name =='donor')
                         <li> <a href="{{route('frontend.donor.wantdonate')}}" class="nav-link">Want To Donate</a></li>
-                        <li> <a href="#" class="nav-link">{{auth()->user()->name}}</a></li>
+                        <li> <a href="{{route('frontend.donor.home')}}" class="nav-link">{{auth()->user()->name}}</a></li>
                         <li> <a class="nav-link" href="{{ route('logout') }}"
                             onclick="event.preventDefault();
                                   document.getElementById('logout-form').submit();">
