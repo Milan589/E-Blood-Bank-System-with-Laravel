@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Backend\BloodGroup;
 use App\Models\Backend\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -37,6 +38,7 @@ class UserController extends BackendBaseController
     public function create()
     {
         $data['roles'] = Role::pluck('name', 'id');
+        $data['bloodGroups'] = BloodGroup::pluck('bg_name', 'id');
         return view($this->__loadDataToView($this->base_view . 'create'), compact('data'));
     }
 
@@ -55,6 +57,7 @@ class UserController extends BackendBaseController
                 'phone' => 'required|numeric|min:10',
                 'email' => 'required|email|max:255|unique:users,email,'.Auth::user()->id.',id',
                 'password' => 'required',
+                'bg_name'=> 'required',
             ]
         );
         try {
@@ -121,6 +124,7 @@ class UserController extends BackendBaseController
                 'phone' => 'required|numeric|min:10',
                 'email' => 'required|email',
                 'password' => 'required',
+                'bg_name'=> 'required',
             ]
         );
         $data['record'] = $this->model->find($id);

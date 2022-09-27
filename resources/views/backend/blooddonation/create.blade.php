@@ -42,7 +42,7 @@
                         </div>
                         <div class="form-group">
                             {!! Form::label('user_id', 'Blood Donor Name'); !!}
-                            {!! Form::select('user_id',$data['donorNames'],null,['class' => 'form-control','placeholder' => 'Select Donor Name']); !!}
+                            {!! Form::select('user_id',$data['donorNames'], null,['class' => 'form-control','placeholder' => 'Select Donor Name']); !!}
                             @include('backend.common.validation_field',['field' => 'user_id'])
                         </div>
                         <div class="form-group">

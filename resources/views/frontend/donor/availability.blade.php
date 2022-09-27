@@ -9,7 +9,7 @@
                         <div class="row-mb-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="{{ route('frontend.home') }}">Home</a></li>
-                                <li class="breadcrumb-item active">Blood Bank</li>
+                                <li class="breadcrumb-item active">Blood Availability</li>
                             </ol>
                         </div>
                     </div>

@@ -23,6 +23,14 @@
     {!! Form::password('password',['class' => 'form-control']); !!}
     @include('backend.common.validation_field',['field' => 'password'])
 </div>
+<div class="form-handler">
+    {!! Form::label('bloodgroup', 'Blood Group'); !!}
+    {!! Form::select('bg_id', $data['bloodGroups'], null, [
+        'class' => 'form-control',
+        'placeholder' => 'Select Blood Groups',
+    ]) !!}
+    @include('backend.common.validation_field', ['field' => 'bg_name'])
+</div>
 <div class="form-group">
     {!! Form::submit($button . ' ' . $module, ['class' => 'btn btn-info']); !!}
     {!! Form::reset('Clear', ['class' => 'btn btn-danger']); !!}

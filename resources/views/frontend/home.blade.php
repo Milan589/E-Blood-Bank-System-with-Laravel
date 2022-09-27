@@ -25,14 +25,12 @@
                         <a href="#" class="btn-event-click-button"
                             style="background-color:#cf3d3c;color:#fff;padding:12px;border-radius:25px;font-weight:600;"><i
                                 class="far fa-clock"></i>
-                            &nbsp;&nbsp;Time&nbsp;&nbsp;</a>&nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;Request Blood &nbsp;&nbsp;</a>&nbsp;&nbsp;&nbsp;
                     </div>
                     <div class="signup">
                         <a href="{{route('frontend.donor.register')}}" class="btn-event-click-button">
                             Register Now</a>
-
                     </div>
-
                 </div>
                 <div class="col-lg-6 col-12 image-banner">
                     <img src="{{asset('assets/frontend/images/banner.png')}}" height="100%" width="100%">
@@ -80,7 +78,7 @@
         <div class="section-content">
             <div class="blood-section">
                 <div class="blood">
-                    <a href="#" class="btn-signup">
+                    <a href="{{route('frontend.donor.availability')}}" class="btn-signup">
                         <h4 class="topic">Blood Availibility</h4>
                     </a>
                 </div>
@@ -89,11 +87,13 @@
                         <h4 class="topic">Blood Bank</h4>
                     </a>
                 </div>
+                @if (auth()->user() != null && auth()->user()->role->name =='donor')
                 <div class="blood2">
                     <a href="#" class="btn-signup">
                         <h4 class="topic">Blood Donation</h4>
                     </a>
                 </div>
+                @endif
                 <div class="blood3">
                     <a href="{{route('frontend.donor.login')}}" class="btn-signup">
                         <h4 class="topic">Donor login</h4>
