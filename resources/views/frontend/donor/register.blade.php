@@ -72,7 +72,7 @@
                 'class' => 'form-control',
                 'placeholder' => 'Select Blood Groups',
             ]) !!}
-            @include('backend.common.validation_field', ['field' => 'bg_name'])
+            @include('backend.common.validation_field', ['field' => 'bg_id'])
         </div>
         <div class="form-handler">
             <button type="submit" class="btn-register">Register</button>
