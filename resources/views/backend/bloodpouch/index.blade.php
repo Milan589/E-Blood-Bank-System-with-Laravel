@@ -33,7 +33,7 @@
                                 <tr>
                                     <th>SN</th>
                                     <th>Donor Name</th>
-                                    <th>Blood Bank Name</th>
+                                    <th>Blood Group</th>
                                     <th>Is Available</th>
                                     <th>Action</th>
                                 </tr>
@@ -42,8 +42,8 @@
                                 <tbody>
                                     <tr>
                                         <td>{{ $loop->index + 1 }}</td>
-                                        {{-- <td>{{ $record->donorName->name }}</td> --}}
-                                        <td> </td>
+                                        <td>{{ $record->bloodDonor->donorName->name }}</td>
+                                        <td> {{$record->bloodGroup->bg_name}}</td>
                                         <td>
                                             @if ($record->status == 1)
                                                 <span class="text-success">Yes</span>

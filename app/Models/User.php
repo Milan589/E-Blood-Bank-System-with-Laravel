@@ -58,13 +58,16 @@ class User extends Authenticatable
     {
         return $this->belongsTo(User::class, 'updated_by', 'id');
     }
+
     function bloodGroup()
     {
         return $this->belongsTo(BloodGroup::class, 'bg_id', 'id');
     }
+
     function role(){
         return $this->belongsTo(Role::class,'role_id','id');
     }
+    
     function donor(){
         return $this->hasMany(BloodDonation::class,'bd_id','id');
     }

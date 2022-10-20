@@ -32,7 +32,7 @@ Route::get('/donor/bloodbank', [App\Http\Controllers\Frontend\DonorController::c
 Route::get('/donor/availability', [App\Http\Controllers\Frontend\DonorController::class, 'bloodAvailable'])->name('frontend.donor.availability');
 
 // //ajax
-// Route::post('/get_subcategory', [\App\Http\Controllers\Backend\BloodPouchController::class, 'getSubcategory'])->name('frontend.donor.getsubcategory');
+// Route::post('/get_subcategory', [\App\Http\Controllers\Backend\BloodPouchController::class, 'getSubcategory'])->name('backend.donor.getsubcategory');
 
 
 ################ BloodBankController ############

@@ -42,16 +42,16 @@
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
-    $('#category_id').change(function() {
-        var catid = $(this).val();
+    $('#bd_id').change(function() {
+        var bdid = $(this).val();
         $.ajax({
             method: "POST",
-            url: "{{ route('frontend.donor.getsubcategory') }}",
+            url: "{{ route('backend.donor.getsubcategory') }}",
             data: {
-                'id': catid
+                'id': bdid
             },
             success: function(resp) {
-                $('#subcategory_id').html(resp);
+                $('#bg_id').html(resp);
             }
         });
     });

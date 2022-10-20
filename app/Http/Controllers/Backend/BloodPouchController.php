@@ -200,14 +200,14 @@ class BloodPouchController extends BackendBaseController
         }
     }
 
-    //   //for ajax call
+      //for ajax call
     //   function getSubcategory(Request $request){
-    //     $category_id = $request->id;
-    //     $records = $this->model->find($category_id)->subcategories()->get();
-    //     $option = "<option value='' >Select Subcategory</option>";
-    //     foreach($records as $record){
-    //         $option .="<option value='$record->id'>$record->title</option>";
-    //     }
-    //     return $option;
+    //     $bd_id = $request->id;
+    //     $records = $this->model->find($bd_id)->bgGroup()->userBlood()->get();
+        // $option = "<option value='' >Select Subcategory</option>";
+        // foreach($records as $record){
+        //     $option .="<option value='$record->id'>$record->title</option>";
+        // }
+        // return $option;
     // }
 }

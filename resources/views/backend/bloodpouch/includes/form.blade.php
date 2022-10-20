@@ -3,6 +3,7 @@
     {!! Form::radio('status', 1) !!} Yes
     {!! Form::radio('status', 0, true) !!} No
 </div>
+
 <div class="form-group">
     {!! Form::label('bd_id', 'Blood Donor'); !!}
     {!! Form::select('bd_id',$data['bloodDonations'], null,['class' => 'form-control','placeholder'=>'Select Donation ID']); !!}

@@ -28,4 +28,7 @@ class BloodDonation extends Model
     function donorName(){
         return $this->belongsTo(User::class,'user_id','id');
     }
+    function bloodDonation(){
+        return $this->hasMany(BloodPouch::class,'bd_id','id');
+    }
 }
