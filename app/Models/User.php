@@ -69,6 +69,6 @@ class User extends Authenticatable
     }
     
     function donor(){
-        return $this->hasMany(BloodDonation::class,'bd_id','id');
+        return $this->hasOne(Donor::class,'user_id','id');
     }
 }

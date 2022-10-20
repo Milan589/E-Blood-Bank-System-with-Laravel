@@ -19,7 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id')->nullable();
             $table->date('order_date');
             $table->date('receive_date');
-            $table->integer('quantity');
+            $table->string('total');
             $table->timestamps();
             $table->softDeletes();
             $table->unsignedBigInteger('created_by');

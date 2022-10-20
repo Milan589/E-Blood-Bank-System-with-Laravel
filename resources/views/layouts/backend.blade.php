@@ -42,7 +42,7 @@
         <div class="sidebar">
             <nav class="navbar bg-primary">
                 <a href="index.html" class="navbar-brand mx-4 mb-3">
-                    <h3 class="text-light"></i>Blood Bank</h3>
+                    <h3 class="text-light"></i>E-Blood Bank</h3>
                 </a>
                 <div class="navbar-nav w-100">
                     <a href="{{ url('/home') }}" class="nav-item nav-link"><i

@@ -23,6 +23,7 @@ class DonorController extends Controller
         $data['bloodGroups'] = BloodGroup::pluck('bg_name', 'id');
         return view('frontend.donor.register', compact('data'));
     }
+
     function register(Request $request)
     {
         $request->validate(
@@ -71,8 +72,8 @@ class DonorController extends Controller
     function home()
     {
 
-        $data['record'] = BloodDonation::pluck('user_id','id' )->count();
-        return view('frontend.donor.home',compact('data'));
+        $data['record'] = BloodDonation::pluck('user_id', 'id')->count();
+        return view('frontend.donor.home', compact('data'));
     }
     function donate()
     {
@@ -91,18 +92,16 @@ class DonorController extends Controller
             ]
         );
         try {
-           
             $request->request->add(['user_id' => Auth::user()->id]);
             //    dd($request);
-                $donor = BloodDonation::create($request->all());
-                if ($donor) {
-                    DB::commit();
-                    $request->session()->flash('success', 'Your donation successfully!!');
-                    return redirect()->route('frontend.donor.home');
-                } else {
-                    DB::rollBack();
-                }
-            
+            $donor = BloodDonation::create($request->all());
+            if ($donor) {
+                DB::commit();
+                $request->session()->flash('success', 'Your donation successfully!!');
+                return redirect()->route('frontend.donor.home');
+            } else {
+                DB::rollBack();
+            }
         } catch (\Exception $exception) {
             DB::rollBack();
             $request->session()->flash('error', 'Error: ' . $exception->getMessage());
@@ -111,13 +110,22 @@ class DonorController extends Controller
         return redirect()->route('frontend.donor.register');
     }
 
-    function bloodbank(){
+    function bloodbank()
+    {
         $data['records'] = BloodBank::orderby('created_at', 'desc')->get();
-        return view('frontend.donor.bloodbank',compact('data'));
+        return view('frontend.donor.bloodbank', compact('data'));
     }
-    function bloodAvailable(){
-        $data['records'] = BloodGroup::pluck('bg_name','id');
-        $data['records'] = BloodPouch::orderby('created_at','desc')->get();      
-        return view('frontend.donor.availability',compact('data'));
+
+    function bloodAvailable()
+    {
+        $data['records'] = BloodGroup::pluck('bg_name', 'id');
+        $data['records'] = BloodPouch::orderby('created_at', 'desc')->get();
+        return view('frontend.donor.availability', compact('data'));
+    }
+
+    function checkout()
+    {
+        $data['bloodGroups'] = BloodGroup::pluck('bg_name', 'id');
+        return view('frontend.donor.checkout',compact('data'));
     }
 }

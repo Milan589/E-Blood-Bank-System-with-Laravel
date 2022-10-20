@@ -24,4 +24,7 @@ class BloodGroup extends Model
     function bloodPouch(){
         return $this->hasMany(BloodPouch::class,'bg_id','id');
     }
+    function bName(){
+        return $this->belongsTo(User::class,'user_id','id');
+    }
 }

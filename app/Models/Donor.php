@@ -12,4 +12,9 @@ class Donor extends Model
     protected $table = "donors";
     protected $fillable = ['name','address','user_id'];
 
+
+    function bloodGroup(){
+        return $this->belongsTo(User::class,'user_id','id');
+    }
 }
+

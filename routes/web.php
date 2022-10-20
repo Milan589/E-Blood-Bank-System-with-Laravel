@@ -30,6 +30,7 @@ Route::get('/donor/wantdonate', [\App\Http\Controllers\Frontend\DonorController:
 Route::post('/donor/donate', [App\Http\Controllers\Frontend\DonorController::class, 'dodonate'])->name('frontend.donor.donate');
 Route::get('/donor/bloodbank', [App\Http\Controllers\Frontend\DonorController::class, 'bloodbank'])->name('frontend.donor.bloodbank');
 Route::get('/donor/availability', [App\Http\Controllers\Frontend\DonorController::class, 'bloodAvailable'])->name('frontend.donor.availability');
+Route::get('/donor/checkout', [App\Http\Controllers\Frontend\DonorController::class, 'checkout'])->name('frontend.donor.checkout');
 
 // //ajax
 // Route::post('/get_subcategory', [\App\Http\Controllers\Backend\BloodPouchController::class, 'getSubcategory'])->name('backend.donor.getsubcategory');

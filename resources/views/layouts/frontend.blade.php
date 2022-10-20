@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{{ asset('assets/frontend/css/index.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/frontend/css/tablet.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/frontend/css/mobile.css') }}">
+    <link href="{{ asset('assets/backend/css/login.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('assets/frontend/fontawesome-free-5.15.4-web/css/all.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/frontend/bootstrap-5.1.3-dist/css/bootstrap.min.css') }}">
     @yield('css')
