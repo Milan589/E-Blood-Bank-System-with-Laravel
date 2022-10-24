@@ -24,7 +24,7 @@
 
         <h4>Request Blood</h4>
 
-        <form action="{{ route('frontend.donor.doregister') }}" method='post' name="form" id="form">
+        <form action="" method='post' name="form" id="form">
             @csrf
             <div class="form-handler pt-4">
                 <label for="">Name : </label>
@@ -49,8 +49,16 @@
                 ]) !!}
                 @include('backend.common.validation_field', ['field' => 'bg_id'])
             </div>
+            <div class="form-handler pt-4">
+                <label for=""><b>No of Pouches :</b></label>
+                <select name="quantity" id="">
+                    <option value="">No of Pouches</option>
+                    <option value="1">1 </option>   
+                    <option value="2">2 </option>
+                </select>
+            </div>
             <div class="form-handler">
-                <button type="submit" class="btn-register">Register</button>
+                <button type="submit" class="btn-register">Process</button>
                 <button type="reset" class="btn-register">Reset</button>
             </div>
         </form>
