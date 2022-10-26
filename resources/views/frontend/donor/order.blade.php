@@ -1,5 +1,5 @@
 @extends('layouts.frontend')
-@section('title', 'Checkout Home')
+@section('title', 'Blood Request')
 @section('main-content')
     <div class="container">
         <section class="content-header">
@@ -24,8 +24,15 @@
 
         <h4>Request Blood</h4>
 
-        <form action="" method='post' name="form" id="form">
+        <form action="{{route('frontend.donor.add')}}" method='post' name="form" id="form">
             @csrf
+            <input type="hidden" name="name" value="{{ Auth()->user()->name }}">
+            <input type="hidden" name="address" value="{{ Auth()->user()->donor->address }}">
+            <input type="hidden" name="phone" value="{{ Auth()->user()->phone }} ">
+            <input type="hidden" name="email" value="{{ Auth()->user()->email }} ">
+            <input type="hidden" name="price" value="500">
+            <input type="hidden" name="weight" value="1">
+          
             <div class="form-handler pt-4">
                 <label for="">Name : </label>
                 <span style="font-weight: 700"> {{ Auth()->user()->name }} </span>
@@ -43,20 +50,33 @@
                 <span style="font-weight: 700"> {{ Auth()->user()->email }} </span>
             </div>
             <div class="form-handler pt-4">
-                {!! Form::select('bg_id', $data['bloodGroups'], null, [
-                    'class' => 'form-control',
-                    'placeholder' => 'Select Blood Groups',
-                ]) !!}
-                @include('backend.common.validation_field', ['field' => 'bg_id'])
+                <label for="">Blood Group: </label>
+                <select name="bg_id" id="bg_id">
+                    <option value="">Select Blood Group</option>
+                    @foreach ($data['bloodGroups'] as $blood )
+                    <option value="{{$blood}}">{{$blood}}</option>
+                    @endforeach 
+                </select>
+                @error('bg_id')
+                <span class="text-danger" style="display: block">
+                    <strong>{{$message}}</strong>
+                </span>
+                @enderror 
             </div>
             <div class="form-handler pt-4">
-                <label for=""><b>No of Pouches :</b></label>
-                <select name="quantity" id="">
+                <label for="">No of Pouches :</label>
+                <select name="qty" id="qty">
                     <option value="">No of Pouches</option>
                     <option value="1">1 </option>   
                     <option value="2">2 </option>
                 </select>
+                @error('qty')
+                <span class="text-danger" style="display: block">
+                    <strong>{{$message}}</strong>
+                </span>
+                @enderror 
             </div>
+
             <div class="form-handler">
                 <button type="submit" class="btn-register">Process</button>
                 <button type="reset" class="btn-register">Reset</button>

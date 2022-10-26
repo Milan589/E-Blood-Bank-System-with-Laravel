@@ -67,7 +67,6 @@
                                 <select name="amount" class="form-control">
                                     <option value="">Select Blood Amount</option>
                                     <option value="500">500</option>
-                                    <option value="600">600</option>
                                 </select>
                                 @error('amount')
                                     <span class="text-danger">

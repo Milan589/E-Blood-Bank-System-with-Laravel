@@ -11,17 +11,18 @@ use App\Models\Backend\BloodPouch;
 use App\Models\Backend\Location;
 use App\Models\Donor;
 use App\Models\User;
+use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
-class DonorController extends Controller
+class DonorController extends FrontendBaseController
 {
     function registerForm()
     {
         $data['bloodGroups'] = BloodGroup::pluck('bg_name', 'id');
-        return view('frontend.donor.register', compact('data'));
+        return view($this->__LoadDataToView('frontend.donor.register'), compact('data'));
     }
 
     function register(Request $request)
@@ -73,13 +74,13 @@ class DonorController extends Controller
     {
 
         $data['record'] = BloodDonation::pluck('user_id', 'id')->count();
-        return view('frontend.donor.home', compact('data'));
+        return view($this->__LoadDataToView('frontend.donor.home'), compact('data'));
     }
     function donate()
     {
         $data['bloodGroups'] = BloodGroup::pluck('bg_name', 'id');
         $data['banknames'] = BloodBank::pluck('bank_name', 'id');
-        return view('frontend.donor.wantdonate', compact('data'));
+        return view($this->__LoadDataToView('frontend.donor.wantdonate'), compact('data'));
     }
 
     function dodonate(Request $request)
@@ -113,19 +114,59 @@ class DonorController extends Controller
     function bloodbank()
     {
         $data['records'] = BloodBank::orderby('created_at', 'desc')->get();
-        return view('frontend.donor.bloodbank', compact('data'));
+        return view($this->__LoadDataToView('frontend.donor.bloodbank'), compact('data'));
     }
 
     function bloodAvailable()
     {
         $data['records'] = BloodGroup::pluck('bg_name', 'id');
         $data['records'] = BloodPouch::orderby('created_at', 'desc')->get();
-        return view('frontend.donor.availability', compact('data'));
+        return view($this->__LoadDataToView('frontend.donor.availability'), compact('data'));
     }
 
-    function checkout()
+    function orderBlood()
     {
+
         $data['bloodGroups'] = BloodGroup::pluck('bg_name', 'id');
-        return view('frontend.donor.checkout',compact('data'));
+        return view($this->__LoadDataToView('frontend.donor.order'), compact('data'));
+    }
+    function addToCart(Request $request)
+    {
+
+        $request->validate(
+            [
+                'bg_id' => 'required',
+                'qty' => 'required',
+            ]
+        );
+        Cart::add(
+            [
+                'name' => $request->input('name'),
+                'address' => $request->input('address'),
+                'phone' => $request->input('phone'),
+                'email' => $request->input('email'),
+                'id' => $request->input('bg_id'),
+                'price' => $request->input('price'),
+                'qty' => $request->input('qty'),
+                'weight' => $request->input('weight'),
+            ]
+        );
+        return view($this->__LoadDataToView('frontend.donor.orderlist'));
+    }
+
+    function orderList()
+    {
+        return view($this->__LoadDataToView('frontend.donor.orderlist'));
+    }
+
+    function updateOrder(Request $request)
+    {
+        $row_ids = $request->input('row_id');
+        $qtys = $request->input('qty');
+        for ($i = 0; $i < count($row_ids); $i++) {
+            Cart::update($row_ids[$i], $qtys[$i]);
+        }
+        request()->session()->flash('success', 'Blood Request Upadate successfully');
+        return redirect()->route('frontend.donor.orderlist');
     }
 }

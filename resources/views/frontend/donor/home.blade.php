@@ -25,7 +25,7 @@
                     <h4 class="widget-title p-4" style="background-color: #dc3545; color:#faebd7;">Donor Section</h4>
                     <div class="widget-content " style="background-color: #faebd7; color:#dc3545;">
                         <ul class="nav nav-pills flex-column">
-                            <li> <a href="" class="nav-link" style="color: #dc3545;"><i class="fa fa-list"></i>
+                            <li> <a href="{{route('frontend.donor.orderlist')}}" class="nav-link" style="color: #dc3545;"><i class="fa fa-list"></i>
                                     My
                                     orders</a></li>
                             <li> <a href="{{ route('frontend.donor.home') }}" class="nav-link" style="color:#dc3545;"><i
