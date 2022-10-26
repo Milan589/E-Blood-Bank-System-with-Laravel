@@ -26,7 +26,7 @@
                     <i class="fa-solid fa-droplet fa-3x text-danger"></i>
                     <div class="ms-3">
                         <p class="mb-2 text-primary">A+</p>
-                        <h6 class="mb-0">100ml</h6>
+                        <h6 class="mb-0">{{$totalApos}} ml</h6>
                     </div>
                 </div>
             </div>
@@ -35,7 +35,7 @@
                     <i class="fa-solid fa-droplet fa-3x text-danger"></i>
                     <div class="ms-3">
                         <p class="mb-2 text-primary">A-</p>
-                        <h6 class="mb-0">200ml</h6>
+                        <h6 class="mb-0">{{$totalAmins}} ml</h6>
                     </div>
                 </div>
             </div>
@@ -44,7 +44,7 @@
                     <i class="fa-solid fa-droplet fa-3x text-danger"></i>
                     <div class="ms-3">
                         <p class="mb-2 text-primary">B+</p>
-                        <h6 class="mb-0">50ml</h6>
+                        <h6 class="mb-0">{{$totalBpos}} ml</h6>
                     </div>
                 </div>
             </div>
@@ -53,7 +53,7 @@
                     <i class="fa-solid fa-droplet fa-3x text-danger"></i>
                     <div class="ms-3">
                         <p class="mb-2 text-primary">B-</p>
-                        <h6 class="mb-0">100ml</h6>
+                        <h6 class="mb-0">{{$totalBmins}} ml</h6>
                     </div>
                 </div>
             </div>
@@ -64,7 +64,7 @@
                     <i class="fa-solid fa-droplet fa-3x text-danger"></i>
                     <div class="ms-3">
                         <p class="mb-2 text-primary">AB+</p>
-                        <h6 class="mb-0">200ml</h6>
+                        <h6 class="mb-0">{{$totalABpos}} ml</h6>
                     </div>
                 </div>
             </div>
@@ -73,7 +73,7 @@
                     <i class="fa-solid fa-droplet fa-3x text-danger"></i>
                     <div class="ms-3">
                         <p class="mb-2 text-primary">AB-</p>
-                        <h6 class="mb-0">50ml</h6>
+                        <h6 class="mb-0">{{$totalABmins}} ml</h6>
                     </div>
                 </div>
             </div>
@@ -82,7 +82,7 @@
                     <i class="fa-solid fa-droplet fa-3x text-danger"></i>
                     <div class="ms-3">
                         <p class="mb-2 text-primary">O-</p>
-                        <h6 class="mb-0">100ml</h6>
+                        <h6 class="mb-0">{{$totalOmins}} ml</h6>
                     </div>
                 </div>
             </div>
@@ -91,7 +91,7 @@
                     <i class="fa-solid fa-droplet fa-3x text-danger"></i>
                     <div class="ms-3">
                         <p class="mb-2 text-primary">O+</p>
-                        <h6 class="mb-0">100ml</h6>
+                        <h6 class="mb-0">{{$totalOpos}} ml</h6>
                     </div>
                 </div>
             </div>
