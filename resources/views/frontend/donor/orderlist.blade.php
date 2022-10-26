@@ -20,7 +20,7 @@
         </section>
         @include('backend.includes.flash')
         <div class="row">
-            <div class="col-lg-3">
+            <div class="col-lg-3" >
                 <div class="widget mercado-widget categories-widget">
                     <h4 class="widget-title p-4" style="background-color: #dc3545; color:#faebd7;">Donor Section</h4>
                     <div class="widget-content " style="background-color: #faebd7; color:#dc3545;">
@@ -89,18 +89,19 @@
                                                 <td>{{ $cart->qty * $cart->price }}</td>
                                             </tr>
                                         @endforeach
+                                        <tfoot>
+                                            <tr>
+                                                <th colspan="5">Total</th>
+                                                <th colspan="2">Rs. {{ $total }}</th>
+                                            </tr>
+                                        </tfoot>
                                     @else
                                         <tr>
-                                            <td colspan="6">Cart is empty</td>
+                                            <td colspan="6">Request is empty</td>
                                         </tr>
                                     @endif
                                 </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <th colspan="5">Total</th>
-                                        <th colspan="2">Rs. {{ $total }}</th>
-                                    </tr>
-                                </tfoot>
+                               
                             </table>
 
                         </div>
@@ -109,13 +110,15 @@
                             <div class="left"><a href="{{ route('frontend.donor.order') }}"
                                     class="btn btn-outline-secondary"><i class="fa fa-chevron-left"></i> Request Blood</a>
                             </div>
+                            @if (count($carts) > 0)
                             <div class="right">
                                 <button type="submit" class="btn btn-outline-secondary"><i class="fa fa-refresh"></i>
                                     Update
                                     cart</button>
-                                <a href="" type="submit" class="btn btn-primary">Proceed to
+                                <a href="{{route('frontend.donor.checkout')}}" type="submit" class="btn btn-primary">Proceed to
                                     checkout <i class="fa fa-chevron-right"></i></a>
                             </div>
+                            @endif
                         </div>
                     </form>
                 </div>

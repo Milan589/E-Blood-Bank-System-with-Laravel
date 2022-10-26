@@ -34,6 +34,7 @@ Route::get('/donor/order', [App\Http\Controllers\Frontend\DonorController::class
 Route::post('/donor/add', [App\Http\Controllers\Frontend\DonorController::class, 'addToCart'])->name('frontend.donor.add');
 Route::get('/donor/orderlist', [App\Http\Controllers\Frontend\DonorController::class, 'orderList'])->name('frontend.donor.orderlist');
 Route::post('/donor/update', [App\Http\Controllers\Frontend\DonorController::class, 'updateOrder'])->name('frontend.donor.update');
+Route::get('/donor/checkout', [App\Http\Controllers\Frontend\DonorController::class, 'checkout'])->name('frontend.donor.checkout');
 
 // //ajax
 // Route::post('/get_subcategory', [\App\Http\Controllers\Backend\BloodPouchController::class, 'getSubcategory'])->name('backend.donor.getsubcategory');

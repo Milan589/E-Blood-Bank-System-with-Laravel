@@ -9,8 +9,10 @@ use App\Models\Backend\BloodDonation;
 use App\Models\Backend\BloodGroup;
 use App\Models\Backend\BloodPouch;
 use App\Models\Backend\Location;
+use App\Models\Backend\Order;
 use App\Models\Donor;
 use App\Models\User;
+use Carbon\Carbon;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -169,4 +171,62 @@ class DonorController extends FrontendBaseController
         request()->session()->flash('success', 'Blood Request Upadate successfully');
         return redirect()->route('frontend.donor.orderlist');
     }
+
+    function checkout(){
+        return view($this->__LoadDataToView('frontend.donor.checkout'));
+    }
+    function doCheckout(Request $request)
+    {
+        try {
+            $order_data = [
+                'user_id' => auth()->user()->id,
+                'order_code' => uniqid(),
+                'order_date' => Carbon::now(),
+                'address' => $request->address,
+                'phone' => $request->phone,
+                'order_status' => 'Placed',
+                'total' => Cart::total(),
+                'payment_mode' => $request->payment_mode,
+
+            ];
+            $order = Order::create($order_data);
+            if ($order) {
+                $to =0;
+                $order_detail_data['order_id'] = $order->id;
+                foreach (Cart::content() as $rowid => $cart_item) {
+                    $order_detail_data['b_id'] = $cart_item->id;
+                    $order_detail_data['quantity'] = $cart_item->qty;
+                    $order_detail_data['price'] = $cart_item->price;
+                    $order_detail_data['option'] = 'test';
+
+                    OrderDetail::create($order_detail_data);   
+                    $to = $to + ($cart_item->qty*$cart_item->price);
+                    // Cart::remove($rowid);
+                    $request->session()->flash('success', ' Order  successfully!!');
+                }
+                if($request->payment_mode == 'online'){
+                    Session:: put('order_id',$order->id);
+                    $response = $this->gateway->purchase(array(
+                        'amount' =>round($to)/128,
+                        'currency' => env('PAYPAL_CURRENCY'),
+                        'returnUrl' => url('success'),
+                        'cancelUrl' => url('error'),
+                    ))->send();
+    
+                    if ($response->isRedirect()) {
+                        $response->redirect(); // this will automatically forward the customer
+                    } else {
+                        // not successful
+                        return $response->getMessage();
+                    }
+                }     
+            } else {
+                $request->session()->flash('error', ' order failed!!');
+            }
+        } catch (\Exception $exception) {
+            $request->session()->flash('error', 'Error: ' . $exception->getMessage());
+        }
+        return redirect()->route('frontend.checkout');
+    }
+    
 }

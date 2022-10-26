@@ -22,7 +22,7 @@
                     <div style="margin-top:3%;display:inline-flex">
                         <a href="{{route('frontend.donor.bloodbank')}}" class="btn-event-click-button"><i class="fas fa-tint"></i>
                             Blood</a>&nbsp;&nbsp;&nbsp;
-                        <a href="#" class="btn-event-click-button"
+                        <a href="{{route('frontend.donor.order')}}" class="btn-event-click-button"
                             style="background-color:#cf3d3c;color:#fff;padding:12px;border-radius:25px;font-weight:600;"><i
                                 class="far fa-clock"></i>
                             &nbsp;&nbsp;Request Blood &nbsp;&nbsp;</a>&nbsp;&nbsp;&nbsp;
