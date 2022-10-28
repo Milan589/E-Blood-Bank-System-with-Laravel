@@ -131,10 +131,16 @@
                         </div>
                         <div class="form-handler pt-4">
                             <label for="payment_mode">Payment Mode</label>
-                            <input id="payment_mode" name="payment_mode" type="radio" value="cod" checked>COD
-                            <input id="payment_mode" name="payment_mode" type="radio" value="online">Online
-
-
+                            <select name="payment_mode" id="payment_mode" class="form-control">
+                                <option value="">Select Payment Mode</option>
+                                <option value="cod">COD</option>
+                                <option value="online">Online</option> 
+                            </select>
+                            @error('payment_')
+                                
+                            @enderror
+                            {{-- <input id="payment_mode" name="payment_mode" type="radio" value="cod" checked>COD
+                            <input id="payment_mode" name="payment_mode" type="radio" value="online">Online --}}
                         </div>
                         @if (count($carts) > 0)
                             <div class="right">
