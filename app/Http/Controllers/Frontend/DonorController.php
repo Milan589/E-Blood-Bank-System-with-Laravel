@@ -121,29 +121,30 @@ class DonorController extends FrontendBaseController
 
     function bloodAvailable()
     {
-        $data['records'] = BloodGroup::pluck('bg_name', 'id');
+        $data['recordbloodBanks'] = BloodGroup::pluck('bg_name', 'id');
         $data['records'] = BloodPouch::orderby('created_at', 'desc')->get();
         return view($this->__LoadDataToView('frontend.donor.availability'), compact('data'));
     }
 
     function orderBlood()
     {
-
         $data['bloodGroups'] = BloodGroup::pluck('bg_name', 'id');
+        $data['bloodBank'] = BloodBank::pluck('bank_name', 'id');
         return view($this->__LoadDataToView('frontend.donor.order'), compact('data'));
     }
+
     function addToCart(Request $request)
     {
-
         $request->validate(
             [
                 'bg_id' => 'required',
                 'qty' => 'required',
+                'bank_name' => 'required',
             ]
         );
         Cart::add(
             [
-                'name' => $request->input('name'),
+                'name' => $request->input('bank_name'),
                 'address' => $request->input('address'),
                 'phone' => $request->input('phone'),
                 'email' => $request->input('email'),
@@ -172,7 +173,8 @@ class DonorController extends FrontendBaseController
         return redirect()->route('frontend.donor.orderlist');
     }
 
-    function checkout(){
+    function checkout()
+    {
         return view($this->__LoadDataToView('frontend.donor.checkout'));
     }
     function doCheckout(Request $request)
@@ -191,7 +193,7 @@ class DonorController extends FrontendBaseController
             ];
             $order = Order::create($order_data);
             if ($order) {
-                $to =0;
+                $to = 0;
                 $order_detail_data['order_id'] = $order->id;
                 foreach (Cart::content() as $rowid => $cart_item) {
                     $order_detail_data['b_id'] = $cart_item->id;
@@ -199,27 +201,27 @@ class DonorController extends FrontendBaseController
                     $order_detail_data['price'] = $cart_item->price;
                     $order_detail_data['option'] = 'test';
 
-                    OrderDetail::create($order_detail_data);   
-                    $to = $to + ($cart_item->qty*$cart_item->price);
+                    OrderDetail::create($order_detail_data);
+                    $to = $to + ($cart_item->qty * $cart_item->price);
                     // Cart::remove($rowid);
                     $request->session()->flash('success', ' Order  successfully!!');
                 }
-                if($request->payment_mode == 'online'){
-                    Session:: put('order_id',$order->id);
+                if ($request->payment_mode == 'online') {
+                    Session::put('order_id', $order->id);
                     $response = $this->gateway->purchase(array(
-                        'amount' =>round($to)/128,
+                        'amount' => round($to) / 128,
                         'currency' => env('PAYPAL_CURRENCY'),
                         'returnUrl' => url('success'),
                         'cancelUrl' => url('error'),
                     ))->send();
-    
+
                     if ($response->isRedirect()) {
                         $response->redirect(); // this will automatically forward the customer
                     } else {
                         // not successful
                         return $response->getMessage();
                     }
-                }     
+                }
             } else {
                 $request->session()->flash('error', ' order failed!!');
             }
@@ -228,5 +230,4 @@ class DonorController extends FrontendBaseController
         }
         return redirect()->route('frontend.checkout');
     }
-    
 }

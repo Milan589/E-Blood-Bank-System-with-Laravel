@@ -19,15 +19,21 @@ class BloodBank extends Model
     {
         return $this->belongsTo(User::class, 'created_by', 'id');
     }
+
     function updatedBy()
     {
         return $this->belongsTo(User::class, 'updated_by', 'id');
     }
+
     function bankType(){
         return $this->belongsTo(BankType::class,'bt_id','id');
     }
+
     function bankLocation(){
         return $this->belongsTo(Location::class,'l_id','id');
+    }
 
+    function bloodBank(){
+        return $this->hasMany(BloodDonation::class ,'b_id','id');
     }
  }

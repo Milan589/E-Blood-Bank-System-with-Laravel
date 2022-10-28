@@ -59,7 +59,7 @@
 
                                 <thead>
                                     <tr>
-                                        <th>Name</th>
+                                        <th>Blood Bank Name</th>
                                         <th>Quantity</th>
                                         <th>Blood Group</th>
                                         <th>Unit price</th>
@@ -73,14 +73,13 @@
                                         @endphp
                                         @foreach ($carts as $index => $cart)
                                             @php
-                                                $bloodGroup = \App\Models\Backend\BloodGroup::find($cart->id);
                                                 $total += $cart->qty * $cart->price;
                                             @endphp
                                             <input type="hidden" name="row_id[]" value="{{ $index }}">
                                             <tr>
                                                 <td>{{ $cart->name }}</td>
                                                 <td>
-                                                    <input type="number" name="qty[]" min="1"
+                                                    <input type="number" name="qty[]" min="1" max="2"
                                                         value="{{ $cart->qty }}" class="form-control">
                                                 </td>
                                                 <td>{{ $cart->id }}</td>

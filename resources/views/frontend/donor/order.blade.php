@@ -26,7 +26,7 @@
 
         <form action="{{route('frontend.donor.add')}}" method='post' name="form" id="form">
             @csrf
-            <input type="hidden" name="name" value="{{ Auth()->user()->name }}">
+            <input type="hidden" name="name" value="{{ $data['bloodBank'] }}">
             <input type="hidden" name="address" value="{{ Auth()->user()->donor->address }}">
             <input type="hidden" name="phone" value="{{ Auth()->user()->phone }} ">
             <input type="hidden" name="email" value="{{ Auth()->user()->email }} ">
@@ -37,7 +37,7 @@
                 <label for="">Name : </label>
                 <span style="font-weight: 700"> {{ Auth()->user()->name }} </span>
             </div>
-            <div class="form-handler pt-4">
+            <div class="form-handler pt-4"> 
                 <label for="">Address : </label>
                 <span style="font-weight: 700"> {{ Auth()->user()->donor->address }} </span>
             </div>
@@ -76,7 +76,20 @@
                 </span>
                 @enderror 
             </div>
-
+            <div class="form-handler pt-4">
+                <label for="">Blood Bank: </label>
+                <select name="bank_name" id="bank_name">
+                    <option value="">Select Blood Bank</option>
+                    @foreach ($data['bloodBank'] as $bank )
+                    <option value="{{$bank}}">{{$bank}}</option>
+                    @endforeach 
+                </select>
+                @error('bank_name')
+                <span class="text-danger" style="display: block">
+                    <strong>{{$message}}</strong>
+                </span>
+                @enderror 
+            </div>
             <div class="form-handler">
                 <button type="submit" class="btn-register">Process</button>
                 <button type="reset" class="btn-register">Reset</button>
