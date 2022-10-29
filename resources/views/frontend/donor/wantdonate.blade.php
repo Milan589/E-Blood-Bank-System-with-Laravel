@@ -30,8 +30,6 @@
                 </div>
                 <hr>
                 {!! Form::open(['route' => 'frontend.donor.donate', 'method' => 'post', 'class' => 'p-4']) !!}
-
-        
                 <div class="row form-group">
                     <div class="col-sm-12">
                         <div class="well">

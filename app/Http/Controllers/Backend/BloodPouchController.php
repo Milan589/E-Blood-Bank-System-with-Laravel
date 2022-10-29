@@ -37,7 +37,7 @@ class BloodPouchController extends BackendBaseController
      */
     public function create()
     {
-        $data['bloodDonations'] =  BloodDonation::pluck('user_id','id');
+        $data['bloodDonations'] =  BloodPouch::pluck('bd_id','id');
         $data['bloodGroups'] = BloodGroup::pluck('bg_name', 'id');
         return view($this->__LoadDataToView($this->base_view . 'create'),compact('data'));
     }

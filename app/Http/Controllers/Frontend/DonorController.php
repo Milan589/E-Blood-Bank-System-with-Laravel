@@ -10,6 +10,7 @@ use App\Models\Backend\BloodGroup;
 use App\Models\Backend\BloodPouch;
 use App\Models\Backend\Location;
 use App\Models\Backend\Order;
+use App\Models\Backend\OrderBloodPouchDetail;
 use App\Models\Donor;
 use App\Models\User;
 use Carbon\Carbon;
@@ -18,9 +19,21 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
+use Omnipay\Omnipay;
 
 class DonorController extends FrontendBaseController
 {
+    private $gateway;
+
+    public function __construct()
+    {
+        $this->gateway = Omnipay::create('PayPal_Rest');
+        $this->gateway->setClientId(env('PAYPAL_CLIENT_ID'));
+        $this->gateway->setSecret(env('PAYPAL_CLIENT_SECRET'));
+        $this->gateway->setTestMode(false); //set it to 'false' when go live
+    }
+
     function registerForm()
     {
         $data['bloodGroups'] = BloodGroup::pluck('bg_name', 'id');
@@ -143,7 +156,7 @@ class DonorController extends FrontendBaseController
         );
         Cart::add(
             [
-                'id' => $request->input('bank_name'),
+                'id' => $request->input('b_id'),
                 'address' => $request->input('address'),
                 'phone' => $request->input('phone'),
                 'email' => $request->input('email'),
@@ -179,32 +192,39 @@ class DonorController extends FrontendBaseController
     function doCheckout(Request $request)
     {
         $request->validate([
+
+            'name' => 'required',
+            'phone' => 'required',
+            'shipping_address' => 'required',
+            'email' => 'required',
             'payment_mode' => 'required',
         ]);
-
+        // dd($request);
         try {
             $order_data = [
+                'b_id' => $request->b_id,
                 'user_id' => auth()->user()->id,
                 'order_code' => uniqid(),
                 'order_date' => Carbon::now(),
-                'address' => $request->address,
+                'shipping_address' => $request->shipping_address,
+                'email' => $request->email,
                 'phone' => $request->phone,
                 'order_status' => 'Placed',
                 'total' => Cart::total(),
                 'payment_mode' => $request->payment_mode,
-
             ];
+            // dd($request);
             $order = Order::create($order_data);
             if ($order) {
                 $to = 0;
-                $order_detail_data['order_id'] = $order->id;
+                $order_detail_data['bo_id'] = $order->id;
                 foreach (Cart::content() as $rowid => $cart_item) {
-                    $order_detail_data['name'] = $cart_item->id;
+                    $order_detail_data['b_id'] = $cart_item->id;
                     $order_detail_data['quantity'] = $cart_item->qty;
                     $order_detail_data['price'] = $cart_item->price;
                     // $order_detail_data['option'] = 'test';
 
-                    OrderDetail::create($order_detail_data);
+                    OrderBloodPouchDetail::create($order_detail_data);
                     $to = $to + ($cart_item->qty * $cart_item->price);
                     // Cart::remove($rowid);
                     $request->session()->flash('success', ' Order  successfully!!');
@@ -231,6 +251,11 @@ class DonorController extends FrontendBaseController
         } catch (\Exception $exception) {
             $request->session()->flash('error', 'Error: ' . $exception->getMessage());
         }
-        return redirect()->route('frontend.checkout');
+        return redirect()->route('frontend.donor.checkout');
+    }
+
+    public function error()
+    {
+        Session::flash('User cancelled the payment.');
     }
 }

@@ -22,7 +22,7 @@ return new class extends Migration
             $table->boolean('status')->default(0);
             $table->timestamps();
             $table->softDeletes();
-            $table->unsignedBigInteger('created_by');
+            $table->unsignedBigInteger('created_by')->nullable();
             $table->unsignedBigInteger('updated_by')->nullable();
             $table->foreign('b_id')->references('id')->on('blood_banks');
             $table->foreign('user_id')->references('id')->on('users');

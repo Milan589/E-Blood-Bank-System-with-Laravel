@@ -96,7 +96,7 @@
                                         </tfoot>
                                     @else
                                         <tr>
-                                            <td colspan="6">Request is empty</td>
+                                            <td colspan="6">Blood Request is empty</td>
                                         </tr>
                                     @endif
                                 </tbody>

@@ -76,11 +76,11 @@
                                         @endphp
                                         <input type="hidden" name="row_id[]" value="{{ $index }}">
                                         <tr>
-                                            <td>{{ $cart->name }}</td>
+                                            <td>{{ $cart->id }}</td>
                                             <td>
                                                 {{ $cart->qty }}
                                             </td>
-                                            <td>{{ $cart->id }}</td>
+                                            <td>{{ $cart->name }}</td>
                                             <td>{{ $cart->price }}</td>
 
                                             <td>{{ $cart->qty * $cart->price }}</td>
@@ -103,13 +103,13 @@
                     </div>
                     <!-- /.table-responsive-->
 
-                    <form action="" method="post">
+                    <form action="{{ route('frontend.donor.docheckout') }}" method="post">
                         @csrf
                         <div class="row">
                             <div class="col-sm-4">
                                 <div class="form-handler pt-4">
                                     <label for="">Name : </label>
-                                    <input style="background-color: #ced4da ;border:1px solid #ced4da; border-radius:0.25rem" type="text" name="name" value="{{ Auth()->user()->name }}">
+                                    <input style="background-color: #f5f5f5 ;border:1px solid #f5f5f5; border-radius:0.25rem" type="text" name="name" value="{{ Auth()->user()->name }}">
                                     @error('name')
                                         <span class="text-danger" style="display: block">
                                             <strong>{{ $message }}</strong>
@@ -121,7 +121,7 @@
                                 <div class="form-handler pt-4" style="display: inline-block">
                                     <label for="shipping_address">Address : </label>
                                     <input type="text" name="shipping_address"
-                                        value="{{ Auth()->user()->donor->address }}" style="background-color: #ced4da ;border:1px solid #ced4da; border-radius:0.25rem">
+                                        value="{{ Auth()->user()->donor->address }}" style="background-color: #f5f5f5 ;border:1px solid #f5f5f5; border-radius:0.25rem">
                                     @error('shipping_address')
                                         <span class="text-danger" style="display: block">
                                             <strong>{{ $message }}</strong>
@@ -132,7 +132,7 @@
                             <div class="col-sm-4">
                                 <div class="form-handler  pt-4">
                                     <label for="">Phone : </label>
-                                    <input type="text" name="phone" value="{{ Auth()->user()->phone }}" style="background-color: #ced4da ;border:1px solid #ced4da; border-radius:0.25rem">
+                                    <input type="text" name="phone" value="{{ Auth()->user()->phone }}" style="background-color: #f5f5f5 ;border:1px solid #f5f5f5; border-radius:0.25rem">
                                     @error('phone')
                                         <span class="text-danger" style="display: block">
                                             <strong>{{ $message }}</strong>
@@ -145,7 +145,7 @@
                             <div class="col-sm-4">
                                 <div class="form-handler  pt-4">
                                     <label for="">Email : </label>
-                                    <input type="text" name="email" value="{{ Auth()->user()->email }} " style="background-color: #ced4da ;border:1px solid #ced4da; border-radius:0.25rem">
+                                    <input type="text" name="email" value="{{ Auth()->user()->email }} " style="background-color: #f5f5f5 ;border:1px solid #f5f5f5; border-radius:0.25rem">
                                     @error('email')
                                         <span class="text-danger" style="display: block">
                                             <strong>{{ $message }}</strong>
@@ -175,8 +175,8 @@
 
                         @if (count($carts) > 0)
                             <div class="right">
-                                <a href="" type="submit" class="btn btn-primary">Proceed to
-                                    checkout <i class="fa fa-chevron-right"></i></a>
+                                <button type="submit" class="btn btn-primary">Proceed to
+                                    checkout <i class="fa fa-chevron-right"></i></button>
                             </div>
                         @endif
                     </form>

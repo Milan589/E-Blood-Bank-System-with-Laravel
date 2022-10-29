@@ -9,7 +9,7 @@ class Order extends Model
 {
     use HasFactory;
     protected $table = 'blood_orders';
-    protected $fillable = ['user_id','b_id','address','phone','order_code','order_status','order_date','total','payment_mode'	];
+    protected $fillable = ['user_id','b_id','shipping_address','phone','email','order_code','order_status','order_date','total','payment_mode'	];
 
         function bloodBank(){
             return $this->belongsTo(BloodBank::class,'b_id','id');
