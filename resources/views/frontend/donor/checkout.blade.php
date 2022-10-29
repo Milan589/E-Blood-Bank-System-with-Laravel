@@ -109,41 +109,70 @@
                             <div class="col-sm-4">
                                 <div class="form-handler pt-4">
                                     <label for="">Name : </label>
-                                    <span style="font-weight: 700"> {{ Auth()->user()->name }} </span>
+                                    <input style="background-color: #ced4da ;border:1px solid #ced4da; border-radius:0.25rem" type="text" name="name" value="{{ Auth()->user()->name }}">
+                                    @error('name')
+                                        <span class="text-danger" style="display: block">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="col-sm-4">
-                                <div class="form-handler pt-4">
-                                    <label for="">Address : </label>
-                                    <span style="font-weight: 700"> {{ Auth()->user()->donor->address }} </span>
+                                <div class="form-handler pt-4" style="display: inline-block">
+                                    <label for="shipping_address">Address : </label>
+                                    <input type="text" name="shipping_address"
+                                        value="{{ Auth()->user()->donor->address }}" style="background-color: #ced4da ;border:1px solid #ced4da; border-radius:0.25rem">
+                                    @error('shipping_address')
+                                        <span class="text-danger" style="display: block">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="col-sm-4">
                                 <div class="form-handler  pt-4">
                                     <label for="">Phone : </label>
-                                    <span style="font-weight: 700"> {{ Auth()->user()->phone }} </span>
+                                    <input type="text" name="phone" value="{{ Auth()->user()->phone }}" style="background-color: #ced4da ;border:1px solid #ced4da; border-radius:0.25rem">
+                                    @error('phone')
+                                        <span class="text-danger" style="display: block">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
-                        <div class="form-handler  pt-4">
-                            <label for="">Email : </label>
-                            <span style="font-weight: 700"> {{ Auth()->user()->email }} </span>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="form-handler  pt-4">
+                                    <label for="">Email : </label>
+                                    <input type="text" name="email" value="{{ Auth()->user()->email }} " style="background-color: #ced4da ;border:1px solid #ced4da; border-radius:0.25rem">
+                                    @error('email')
+                                        <span class="text-danger" style="display: block">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-sm-8">
+                                <div class="form-handler pt-4">
+                                    <label for="payment_mode">Payment Mode</label>
+                                    <select name="payment_mode" id="payment_mode" class="form-control">
+                                        <option value="">Select Payment Mode</option>
+                                        <option value="cod">COD</option>
+                                        <option value="online">Online</option>
+                                    </select>
+                                    @error('payment_mode')
+                                        <span class="text-danger" style="display: block">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                    {{-- <input id="payment_mode" name="payment_mode" type="radio" value="cod" checked>COD
+                                    <input id="payment_mode" name="payment_mode" type="radio" value="online">Online --}}
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-handler pt-4">
-                            <label for="payment_mode">Payment Mode</label>
-                            <select name="payment_mode" id="payment_mode" class="form-control">
-                                <option value="">Select Payment Mode</option>
-                                <option value="cod">COD</option>
-                                <option value="online">Online</option> 
-                            </select>
-                            @error('payment_mode')
-                            <span class="text-danger" style="display: block">
-                                <strong>{{$message}}</strong>
-                            </span>
-                            @enderror
-                            {{-- <input id="payment_mode" name="payment_mode" type="radio" value="cod" checked>COD
-                            <input id="payment_mode" name="payment_mode" type="radio" value="online">Online --}}
-                        </div>
+
+
                         @if (count($carts) > 0)
                             <div class="right">
                                 <a href="" type="submit" class="btn btn-primary">Proceed to

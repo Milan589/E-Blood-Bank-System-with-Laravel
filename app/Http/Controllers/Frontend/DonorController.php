@@ -121,14 +121,6 @@ class DonorController extends FrontendBaseController
 
     function bloodAvailable()
     {
-        // $bloodbank = DB::table('blood_donations')
-        // ->join('blood_pouches', 'blood_donations.id', '=', 'blood_pouches.bd_id')
-
-        // ->select('b_id')
-        // ->get();
-
-        // $bankName = BloodBank::pluck('bank_name','id');
-        // dd($bankName);
         $data['records'] = BloodPouch::orderby('created_at', 'desc')->get();
         return view($this->__LoadDataToView('frontend.donor.availability'), compact('data'));
     }
@@ -151,11 +143,11 @@ class DonorController extends FrontendBaseController
         );
         Cart::add(
             [
-                'name' => $request->input('bank_name'),
+                'id' => $request->input('bank_name'),
                 'address' => $request->input('address'),
                 'phone' => $request->input('phone'),
                 'email' => $request->input('email'),
-                'id' => $request->input('bg_id'),
+                'name' => $request->input('bg_id'),
                 'price' => $request->input('price'),
                 'qty' => $request->input('qty'),
                 'weight' => $request->input('weight'),
@@ -186,6 +178,10 @@ class DonorController extends FrontendBaseController
     }
     function doCheckout(Request $request)
     {
+        $request->validate([
+            'payment_mode' => 'required',
+        ]);
+
         try {
             $order_data = [
                 'user_id' => auth()->user()->id,
@@ -203,10 +199,10 @@ class DonorController extends FrontendBaseController
                 $to = 0;
                 $order_detail_data['order_id'] = $order->id;
                 foreach (Cart::content() as $rowid => $cart_item) {
-                    $order_detail_data['b_id'] = $cart_item->id;
+                    $order_detail_data['name'] = $cart_item->id;
                     $order_detail_data['quantity'] = $cart_item->qty;
                     $order_detail_data['price'] = $cart_item->price;
-                    $order_detail_data['option'] = 'test';
+                    // $order_detail_data['option'] = 'test';
 
                     OrderDetail::create($order_detail_data);
                     $to = $to + ($cart_item->qty * $cart_item->price);

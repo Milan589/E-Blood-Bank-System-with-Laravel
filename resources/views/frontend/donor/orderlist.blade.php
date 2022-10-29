@@ -77,12 +77,12 @@
                                             @endphp
                                             <input type="hidden" name="row_id[]" value="{{ $index }}">
                                             <tr>
-                                                <td>{{ $cart->name }}</td>
+                                                <td>{{ $cart->id }}</td>
                                                 <td>
                                                     <input type="number" name="qty[]" min="1" max="2"
                                                         value="{{ $cart->qty }}" class="form-control">
                                                 </td>
-                                                <td>{{ $cart->id }}</td>
+                                                <td>{{ $cart->name }}</td>
                                                 <td>{{ $cart->price }}</td>
 
                                                 <td>{{ $cart->qty * $cart->price }}</td>

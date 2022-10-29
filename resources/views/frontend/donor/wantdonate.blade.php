@@ -40,13 +40,13 @@
                                     <div class="form-group">
                                     <label for="username">Name : </label>
                                     <input type="hidden" value="{{auth()->user()->user_id}}">
-                                  <strong>{{ auth()->user()->name }}</strong>  
+                                  <strong style="background-color: #fff ;border:1px solid #ced4da; border-radius:0.25rem ;padding:10px 60px 10px 40px">{{ auth()->user()->name }}</strong>  
                                     </div>
                                 </div>
                                 <div class="col-12 col-sm-6">
                                     <div class="form-group">
                                     <label for="phone">Blood Group : </label>
-                                  <strong>{{auth()->user()->bloodGroup->bg_name}}</strong> 
+                                  <strong style="background-color: #fff ;border:1px solid #ced4da; border-radius:0.25rem ;padding:10px">{{auth()->user()->bloodGroup->bg_name}}</strong> 
     
                                     </div>
                                 </div>
@@ -57,7 +57,7 @@
                             <div class="col-12 col-sm-12">
                                 <div class="form-group">
                                     <label for="username">Phone : </label>
-                                   <strong>{{ auth()->user()->phone }}</strong> 
+                                   <strong style="background-color: #fff ;border:1px solid #ced4da; border-radius:0.25rem ;padding:10px 60px 10px 40px">{{ auth()->user()->phone }}</strong> 
                                     </div>
                             </div>
                         </div>
