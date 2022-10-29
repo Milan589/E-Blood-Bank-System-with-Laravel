@@ -27,7 +27,7 @@ class UserController extends BackendBaseController
     public function index()
     {
         $data['records'] = $this->model->orderby('created_at', 'desc')->get();
-        return view($this->__loadDataToView($this->base_view . 'index'), compact('data'));
+        return view($this->__LoadDataToView($this->base_view . 'index'), compact('data'));
     }
 
     /**
@@ -39,7 +39,7 @@ class UserController extends BackendBaseController
     {
         $data['roles'] = Role::pluck('name', 'id');
         $data['bloodGroups'] = BloodGroup::pluck('bg_name', 'id');
-        return view($this->__loadDataToView($this->base_view . 'create'), compact('data'));
+        return view($this->__LoadDataToView($this->base_view . 'create'), compact('data'));
     }
 
     /**
@@ -87,7 +87,7 @@ class UserController extends BackendBaseController
             request()->session()->flash('error', 'Error: Invalid Request');
             return redirect()->route($this->base_route . 'index');
         }
-        return view($this->__loadDataToView($this->base_view . 'show'), compact('data'));
+        return view($this->__LoadDataToView($this->base_view . 'show'), compact('data'));
     }
 
     /**
@@ -101,7 +101,7 @@ class UserController extends BackendBaseController
         $data['roles'] = Role::pluck('name', 'id');
         $data['record'] = $this->model->find($id);
         if ($data['record']) {
-            return view($this->__loadDataToView($this->base_view . 'edit'), compact('data'));
+            return view($this->__LoadDataToView($this->base_view . 'edit'), compact('data'));
         } else {
             request()->session()->flash('error', 'Invalid Request');
             return redirect()->route($this->base_route . 'index');

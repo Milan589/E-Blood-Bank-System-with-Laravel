@@ -37,45 +37,45 @@ class BackendController extends Controller
         $totalBpos = $bloodGroupBpos->sum('amount');
 
         $bloodGroupBmins = DB::table('users')
-        ->join('blood_donations', 'users.id', '=', 'blood_donations.user_id')
-        ->where('bg_id', 4)
-        ->where('status', 1)
-        ->select('amount')
-        ->get();
-    $totalBmins = $bloodGroupBmins->sum('amount');
+            ->join('blood_donations', 'users.id', '=', 'blood_donations.user_id')
+            ->where('bg_id', 4)
+            ->where('status', 1)
+            ->select('amount')
+            ->get();
+        $totalBmins = $bloodGroupBmins->sum('amount');
 
-    $bloodGroupABpos = DB::table('users')
-    ->join('blood_donations', 'users.id', '=', 'blood_donations.user_id')
-    ->where('bg_id', 5)
-    ->where('status', 1)
-    ->select('amount')
-    ->get();
-$totalABpos = $bloodGroupABpos->sum('amount');
+        $bloodGroupABpos = DB::table('users')
+            ->join('blood_donations', 'users.id', '=', 'blood_donations.user_id')
+            ->where('bg_id', 5)
+            ->where('status', 1)
+            ->select('amount')
+            ->get();
+        $totalABpos = $bloodGroupABpos->sum('amount');
 
-$bloodGroupABmins = DB::table('users')
-->join('blood_donations', 'users.id', '=', 'blood_donations.user_id')
-->where('bg_id', 6)
-->where('status', 1)
-->select('amount')
-->get();
-$totalABmins = $bloodGroupABmins->sum('amount');
+        $bloodGroupABmins = DB::table('users')
+            ->join('blood_donations', 'users.id', '=', 'blood_donations.user_id')
+            ->where('bg_id', 6)
+            ->where('status', 1)
+            ->select('amount')
+            ->get();
+        $totalABmins = $bloodGroupABmins->sum('amount');
 
-$bloodGroupOpos = DB::table('users')
-->join('blood_donations', 'users.id', '=', 'blood_donations.user_id')
-->where('bg_id', 7)
-->where('status', 1)
-->select('amount')
-->get();
-$totalOpos = $bloodGroupOpos->sum('amount');
+        $bloodGroupOpos = DB::table('users')
+            ->join('blood_donations', 'users.id', '=', 'blood_donations.user_id')
+            ->where('bg_id', 7)
+            ->where('status', 1)
+            ->select('amount')
+            ->get();
+        $totalOpos = $bloodGroupOpos->sum('amount');
 
-$bloodGroupOmins = DB::table('users')
-->join('blood_donations', 'users.id', '=', 'blood_donations.user_id')
-->where('bg_id', 8)
-->where('status', 1)
-->select('amount')
-->get();
-$totalOmins = $bloodGroupOmins->sum('amount');
+        $bloodGroupOmins = DB::table('users')
+            ->join('blood_donations', 'users.id', '=', 'blood_donations.user_id')
+            ->where('bg_id', 8)
+            ->where('status', 1)
+            ->select('amount')
+            ->get();
+        $totalOmins = $bloodGroupOmins->sum('amount');
 
-        return view('home', compact('totalApos','totalAmins', 'totalBpos','totalBmins','totalABpos','totalABmins','totalOpos','totalOmins',));
+        return view('home', compact('totalApos', 'totalAmins', 'totalBpos', 'totalBmins', 'totalABpos', 'totalABmins', 'totalOpos', 'totalOmins',));
     }
 }

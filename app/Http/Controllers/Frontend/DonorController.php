@@ -74,10 +74,10 @@ class DonorController extends FrontendBaseController
     }
     function home()
     {
-
         $data['record'] = BloodDonation::pluck('user_id', 'id')->count();
         return view($this->__LoadDataToView('frontend.donor.home'), compact('data'));
     }
+
     function donate()
     {
         $data['bloodGroups'] = BloodGroup::pluck('bg_name', 'id');
@@ -121,7 +121,14 @@ class DonorController extends FrontendBaseController
 
     function bloodAvailable()
     {
-        $data['recordbloodBanks'] = BloodGroup::pluck('bg_name', 'id');
+        // $bloodbank = DB::table('blood_donations')
+        // ->join('blood_pouches', 'blood_donations.id', '=', 'blood_pouches.bd_id')
+
+        // ->select('b_id')
+        // ->get();
+
+        // $bankName = BloodBank::pluck('bank_name','id');
+        // dd($bankName);
         $data['records'] = BloodPouch::orderby('created_at', 'desc')->get();
         return view($this->__LoadDataToView('frontend.donor.availability'), compact('data'));
     }

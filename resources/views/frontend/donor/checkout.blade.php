@@ -136,8 +136,10 @@
                                 <option value="cod">COD</option>
                                 <option value="online">Online</option> 
                             </select>
-                            @error('payment_')
-                                
+                            @error('payment_mode')
+                            <span class="text-danger" style="display: block">
+                                <strong>{{$message}}</strong>
+                            </span>
                             @enderror
                             {{-- <input id="payment_mode" name="payment_mode" type="radio" value="cod" checked>COD
                             <input id="payment_mode" name="payment_mode" type="radio" value="online">Online --}}
