@@ -26,7 +26,7 @@
 
         <form action="{{route('frontend.donor.add')}}" method='post' name="form" id="form">
             @csrf
-            <input type="hidden" name="b_id" value="{{ $data['bloodBank']->id }}">
+            <input type="hidden" name="bank_name" value="{{ $data['bloodBank']}}">
             <input type="hidden" name="address" value="{{ Auth()->user()->donor->address }}">
             <input type="hidden" name="phone" value="{{ Auth()->user()->phone }} ">
             <input type="hidden" name="email" value="{{ Auth()->user()->email }} ">

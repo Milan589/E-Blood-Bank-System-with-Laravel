@@ -12,6 +12,7 @@ use App\Models\Backend\Location;
 use App\Models\Backend\Order;
 use App\Models\Backend\OrderBloodPouchDetail;
 use App\Models\Donor;
+use App\Models\Payment;
 use App\Models\User;
 use Carbon\Carbon;
 use Gloudemans\Shoppingcart\Facades\Cart;
@@ -156,7 +157,7 @@ class DonorController extends FrontendBaseController
         );
         Cart::add(
             [
-                'id' => $request->input('b_id'),
+                'id' => $request->input('bank_name'),
                 'address' => $request->input('address'),
                 'phone' => $request->input('phone'),
                 'email' => $request->input('email'),
@@ -199,7 +200,6 @@ class DonorController extends FrontendBaseController
             'email' => 'required',
             'payment_mode' => 'required',
         ]);
-        // dd($request);
         try {
             $order_data = [
                 'b_id' => $request->b_id,
@@ -213,7 +213,7 @@ class DonorController extends FrontendBaseController
                 'total' => Cart::total(),
                 'payment_mode' => $request->payment_mode,
             ];
-            // dd($request);
+
             $order = Order::create($order_data);
             if ($order) {
                 $to = 0;
@@ -222,7 +222,6 @@ class DonorController extends FrontendBaseController
                     $order_detail_data['b_id'] = $cart_item->id;
                     $order_detail_data['quantity'] = $cart_item->qty;
                     $order_detail_data['price'] = $cart_item->price;
-                    // $order_detail_data['option'] = 'test';
 
                     OrderBloodPouchDetail::create($order_detail_data);
                     $to = $to + ($cart_item->qty * $cart_item->price);
@@ -232,7 +231,7 @@ class DonorController extends FrontendBaseController
                 if ($request->payment_mode == 'online') {
                     Session::put('order_id', $order->id);
                     $response = $this->gateway->purchase(array(
-                        'amount' => round($to) / 128,
+                        'amount' => round($to),
                         'currency' => env('PAYPAL_CURRENCY'),
                         'returnUrl' => url('success'),
                         'cancelUrl' => url('error'),
@@ -251,9 +250,46 @@ class DonorController extends FrontendBaseController
         } catch (\Exception $exception) {
             $request->session()->flash('error', 'Error: ' . $exception->getMessage());
         }
-        return redirect()->route('frontend.donor.checkout');
+        return redirect()->route('frontend.donor.orderlist');
+    }
+    public function success(Request $request)
+    {
+        // Once the transaction has been approved, we need to complete it.
+        if ($request->input('paymentId') && $request->input('PayerID')) {
+            $transaction = $this->gateway->completePurchase(array(
+                'payer_id'             => $request->input('PayerID'),
+                'transactionReference' => $request->input('paymentId'),
+            ));
+            $response = $transaction->send();
+
+            if ($response->isSuccessful()) {
+                // The customer has successfully paid.
+                $arr_body = $response->getData();
+
+                // Insert transaction data into the database
+                $payment = new Payment();
+                $payment->order_id = Session::get('order_id');
+                $payment->payment_id = $arr_body['id'];
+                $payment->payer_id = $arr_body['payer']['payer_info']['payer_id'];
+                $payment->payer_email = $arr_body['payer']['payer_info']['email'];
+                $payment->amount = $arr_body['transactions'][0]['amount']['total'];
+                $payment->currency = env('PAYPAL_CURRENCY');
+                $payment->payment_status = $arr_body['state'];
+                $payment->save();
+
+                Session::flash('success', 'Payment is successful. Your transaction id is: ' . $arr_body['id']);
+            } else {
+                return $response->getMessage();
+            }
+        } else {
+            Session::flash('error', 'Transaction is declined');
+        }
+        return redirect()->route('frontend.donor.orderlist');
     }
 
+    /**
+     * Error Handling.
+     */
     public function error()
     {
         Session::flash('User cancelled the payment.');
